@@ -31,7 +31,8 @@ class QueuedUsbIo(private val backend: UsbQueueBackend, private val writeTimeout
   private val sequence = AtomicLong()
   private val received = LinkedBlockingQueue<UsbSlot>(4)
   private val inputs = List(4) { UsbSlot(true, ByteBuffer.allocateDirect(16384)) }
-  private val output = UsbSlot(false, ByteBuffer.allocateDirect(131072))
+  private var copyBuffer = ByteBuffer.allocateDirect(131072)
+  private val output = UsbSlot(false, copyBuffer)
   private var current: UsbSlot? = null
   private lateinit var worker: Thread
 
@@ -94,8 +95,16 @@ class QueuedUsbIo(private val backend: UsbQueueBackend, private val writeTimeout
   fun writeFully(source: ByteArray, length: Int) {
     healthy()
     require(length in 1..source.size)
-    if (output.buffer.capacity() < length) output.buffer = ByteBuffer.allocateDirect(length)
-    output.buffer.clear(); output.buffer.put(source, 0, length); output.buffer.flip()
+    if (copyBuffer.capacity() < length) copyBuffer = ByteBuffer.allocateDirect(length)
+    copyBuffer.clear(); copyBuffer.put(source, 0, length); copyBuffer.flip()
+    writeFully(copyBuffer)
+  }
+  /** Caller owns a dedicated reply buffer and cannot reuse it until this returns. */
+  fun writeFully(source: ByteBuffer) {
+    healthy()
+    require(source.isDirect && source.position() == 0 && source.hasRemaining())
+    val length = source.remaining()
+    output.buffer = source
     output.expected = length; output.sent = 0; output.done = CountDownLatch(1)
     if (!backend.queue(output)) throw EOFException("Cannot queue USB reply ($length bytes)")
     if (!output.done.await(writeTimeoutMs, TimeUnit.MILLISECONDS)) {

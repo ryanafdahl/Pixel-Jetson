@@ -122,6 +122,7 @@ def main():
         packed[8] = 1
         rows = []
         print('Exact model handshake passed; running synthetic recurrent frames.', flush=True)
+        phone_profile = None
         for frame in range(args.frames):
             parked()
             start = time.monotonic()
@@ -143,10 +144,11 @@ def main():
                            'samples': len(samples), 'complete': frame == args.frames - 1}
                 sequence = client._next_seq()
                 client.t.send_json(protocol.Msg.STATE_REQ, sequence, {'bench_metrics': metrics})
-                client._expect(protocol.Msg.STATE_RESP, sequence, 2.0)
+                state_reply = client._expect(protocol.Msg.STATE_RESP, sequence, 2.0)
+                phone_profile = json.loads(bytes(state_reply.payload)).get("phone_profile")
         report = {'passed_protocol': True, 'driving_ready': False,
                   'transport': 'usb' if args.usb else 'ssh_adb_tunnel', 'hello': hello,
-                  'usb_link': usb_link,
+                  'usb_link': usb_link, 'phone_profile': phone_profile,
                   'limitations': 'Synthetic inputs; no cameras, modeld, controls, or steering commands. Accuracy and driving latency remain unqualified.',
                   'frames': rows}
         report['steady'] = {key: {'mean': float(np.mean([r[key] for r in rows[5:]])),

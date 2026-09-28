@@ -30,6 +30,8 @@ The latest completed dashboard USB test averaged **51.1 ms**, with **56.1 ms p95
 
 The current app uses **asynchronous USB transfers and reusable buffers**. Its first direct USB test passed using the same cable: average improved from 56.8 to 51.1 ms. The connection negotiated USB 2 high-speed; a faster cable/adapter path remains to be tested. See [optimization details, checks, and rollback](docs/async-usb.md).
 
+A newer [phone-side optimization candidate](docs/phone-optimization.md) removes duplicate image/feature copies, uses direct reply buffers, and adds phase timings. Its desk checks pass; direct USB and sustained results are tracked separately.
+
 ## Mount, plug in, and test
 
 On the first connection, select **JetLink Pixel Test** and **Always use** if Android offers it. Later matching connections should open the app with USB access. **Connect comma USB** is the manual fallback.

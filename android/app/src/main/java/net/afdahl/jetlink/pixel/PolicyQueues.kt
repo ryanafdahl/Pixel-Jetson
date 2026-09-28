@@ -11,24 +11,44 @@ class PolicyQueues {
     const val PACKED_FLOATS = 8 + 2 + 2 + FEATURE_ROW
     const val PAYLOAD_BYTES = 8 + 2 * IMAGE_ROW + 4 * PACKED_FLOATS
   }
-  val img = ByteArray(2 * IMAGE_ROW)
-  val bigImg = ByteArray(2 * IMAGE_ROW)
-  val features = FloatArray(32 * FEATURE_ROW)
+  val narrowHistory: ByteBuffer = ByteBuffer.allocateDirect(5 * IMAGE_ROW)
+  val wideHistory: ByteBuffer = ByteBuffer.allocateDirect(5 * IMAGE_ROW)
+  private val imageScratch by lazy { ByteArray(2 * IMAGE_ROW) }
+  private val wideScratch by lazy { ByteArray(2 * IMAGE_ROW) }
+  val img: ByteArray get() = imageReference(narrowHistory, imageScratch)
+  val bigImg: ByteArray get() = imageReference(wideHistory, wideScratch)
+  private fun imageReference(history: ByteBuffer, result: ByteArray): ByteArray {
+    history.position(imageHead * IMAGE_ROW); history.get(result, 0, IMAGE_ROW)
+    history.position(((imageHead + 4) % 5) * IMAGE_ROW); history.get(result, IMAGE_ROW, IMAGE_ROW)
+    return result
+  }
+  // Gather directly into the LiteRT input in native code during inference.
+  val featureStorage: ByteBuffer = ByteBuffer.allocateDirect(128 * FEATURE_ROW * 4).order(ByteOrder.LITTLE_ENDIAN)
+  private val featureHistory = featureStorage.asFloatBuffer()
+  private val featureScratch by lazy { FloatArray(32 * FEATURE_ROW) }
+  val features: FloatArray
+    get() {
+      for (i in 0 until 32) {
+        featureHistory.position(((featureHead + 4 * i) % 128) * FEATURE_ROW)
+        featureHistory.get(featureScratch, i * FEATURE_ROW, FEATURE_ROW)
+      }
+      return featureScratch
+    }
   val desire = FloatArray(264)
   val traffic = FloatArray(2)
   val action = FloatArray(2)
-  private val narrowHistory = Array(5) { ByteArray(IMAGE_ROW) }
-  private val wideHistory = Array(5) { ByteArray(IMAGE_ROW) }
-  private val featureHistory = Array(128) { FloatArray(FEATURE_ROW) }
   private val desireHistory = Array(132) { FloatArray(8) }
-  private var imageHead = 0
-  private var featureHead = 0
+  var imageHead = 0
+    private set
+  var featureHead = 0
+    private set
   private var desireHead = 0
   private val packed = FloatArray(PACKED_FLOATS)
 
   fun reset() {
-    narrowHistory.forEach { it.fill(0) }; wideHistory.forEach { it.fill(0) }
-    featureHistory.forEach { it.fill(0f) }; desireHistory.forEach { it.fill(0f) }
+    for (i in 0 until narrowHistory.capacity()) { narrowHistory.put(i, 0); wideHistory.put(i, 0) }
+    for (i in 0 until featureHistory.capacity()) featureHistory.put(i, 0f)
+    desireHistory.forEach { it.fill(0f) }
     imageHead = 0; featureHead = 0; desireHead = 0
   }
 
@@ -37,13 +57,9 @@ class PolicyQueues {
     val scalars = ByteBuffer.wrap(payload).order(ByteOrder.LITTLE_ENDIAN)
     val flags = scalars.getInt(4)
     if ((flags and 1) != 0) reset()
-    payload.copyInto(narrowHistory[imageHead], 0, 8, 8 + IMAGE_ROW)
-    payload.copyInto(wideHistory[imageHead], 0, 8 + IMAGE_ROW, 8 + 2 * IMAGE_ROW)
+    narrowHistory.position(imageHead * IMAGE_ROW); narrowHistory.put(payload, 8, IMAGE_ROW)
+    wideHistory.position(imageHead * IMAGE_ROW); wideHistory.put(payload, 8 + IMAGE_ROW, IMAGE_ROW)
     imageHead = (imageHead + 1) % 5
-    narrowHistory[imageHead].copyInto(img, 0)
-    narrowHistory[(imageHead + 4) % 5].copyInto(img, IMAGE_ROW)
-    wideHistory[imageHead].copyInto(bigImg, 0)
-    wideHistory[(imageHead + 4) % 5].copyInto(bigImg, IMAGE_ROW)
     scalars.position(8 + 2 * IMAGE_ROW)
     scalars.asFloatBuffer().get(packed)
     // Match Jetson's fp16 queue storage with ARM vector rounding.
@@ -51,9 +67,9 @@ class PolicyQueues {
     packed.copyInto(desireHistory[desireHead], 0, 0, 8)
     desireHead = (desireHead + 1) % 132
     packed.copyInto(traffic, 0, 8, 10); packed.copyInto(action, 0, 10, 12)
-    packed.copyInto(featureHistory[featureHead], 0, 12, PACKED_FLOATS)
+    featureHistory.position(featureHead * FEATURE_ROW)
+    featureHistory.put(packed, 12, FEATURE_ROW)
     featureHead = (featureHead + 1) % 128
-    for (i in 0 until 32) featureHistory[(featureHead + 4 * i) % 128].copyInto(features, i * FEATURE_ROW)
     for (i in 0 until 33) for (j in 0 until 8) {
       var value = Float.NEGATIVE_INFINITY
       for (k in 0 until 4) value = maxOf(value, desireHistory[(desireHead + i * 4 + k) % 132][j])

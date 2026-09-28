@@ -100,13 +100,14 @@ class MainActivity : Activity() {
     registerReceiver(receiver, IntentFilter().apply { addAction(permissionAction); addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED) }, RECEIVER_NOT_EXPORTED)
     thread(name = "pixel-initialize") {
       synchronized(engineMutex) {
+      var initializing: PixelEngine? = null
       try {
-        report("Checking history queues…")
-        File(getExternalFilesDir(null), "queue-check.json").writeText(QueueCheck.run().toString(2))
         report("Verifying model checksum and loading ${Build.SOC_MODEL}…")
-        val loaded = PixelEngine(this)
+        val loaded = PixelEngine(this, intent.getIntExtra("performance_mode", 5))
         if (stop.get()) { loaded.close(); return@thread }
-        engine = loaded
+        initializing = loaded
+        report("Checking history queues and native input gathers...")
+        File(getExternalFilesDir(null), "queue-check.json").writeText(QueueCheck.run(loaded::verifyHistories).toString(2))
         if (File(loaded.directory, "fixture").isDirectory) {
           report("Running reference fixture…")
           val timings = JSONArray()
@@ -121,10 +122,12 @@ class MainActivity : Activity() {
           File(loaded.reports, "fixture-timings.json").writeText(JSONObject().put("milliseconds", timings).toString(2))
         }
         if (stop.get()) { loaded.close(); engine = null; return@thread }
+        engine = loaded
+        initializing = null
         report("Ready for isolated parked test. Local TCP :8765.")
         startTcp()
         runOnUiThread { scanUsb() }
-      } catch (e: Exception) { report("START FAILED: ${e.javaClass.simpleName}: ${e.message}"); Log.e("PixelJetLink", "startup", e) }
+      } catch (e: Exception) { initializing?.close(); report("START FAILED: ${e.javaClass.simpleName}: ${e.message}"); Log.e("PixelJetLink", "startup", e) }
       }
     }
   }

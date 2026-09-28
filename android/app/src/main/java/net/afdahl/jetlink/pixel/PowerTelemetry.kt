@@ -10,8 +10,10 @@ import org.json.JSONObject
 
 class PowerTelemetry(private val context: Context) {
   private var sampled = -2000L
-  private var cached = JSONObject()
-  @Synchronized fun snapshot(): JSONObject {
+  @Volatile private var cached = JSONObject()
+  init { refresh() }
+  fun snapshot(): JSONObject = cached
+  @Synchronized private fun refresh(): JSONObject {
     val now = SystemClock.elapsedRealtime()
     if (now - sampled < 2000) return cached
     val battery = context.registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
@@ -36,7 +38,7 @@ class PowerTelemetry(private val context: Context) {
   }
 
   fun display(): String {
-    val state = snapshot()
+    val state = refresh()
     val source = if (state.getBoolean("wireless_powered")) "Wireless" else if (state.getBoolean("usb_powered")) "USB" else if (state.getBoolean("ac_powered")) "AC" else "Battery"
     return "Power: $source · ${state.optInt("battery_percent")}% · ${state.opt("battery_temperature_c")}°C\nThermal: ${state.optString("thermal_label")}"
   }

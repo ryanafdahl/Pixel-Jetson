@@ -15,9 +15,13 @@ interface Link : Closeable {
   fun readFully(destination: ByteArray, offset: Int, length: Int)
   fun writeFully(source: ByteArray)
   fun writeFully(source: ByteArray, length: Int) { writeFully(source.copyOf(length)) }
+  fun writeFully(source: ByteBuffer) {
+    val bytes = ByteArray(source.remaining()); source.get(bytes); writeFully(bytes)
+  }
 }
 
 class TcpLink(private val socket: Socket) : Link {
+  private val sendScratch = ByteArray(131072)
   override val receiveAlignment = 0
   init { socket.tcpNoDelay = true; socket.soTimeout = 5000 }
   override fun readFully(destination: ByteArray, offset: Int, length: Int) {
@@ -30,6 +34,12 @@ class TcpLink(private val socket: Socket) : Link {
   }
   override fun writeFully(source: ByteArray) { socket.getOutputStream().write(source) }
   override fun writeFully(source: ByteArray, length: Int) { socket.getOutputStream().write(source, 0, length) }
+  override fun writeFully(source: ByteBuffer) {
+    while (source.hasRemaining()) {
+      val n = minOf(sendScratch.size, source.remaining())
+      source.get(sendScratch, 0, n); socket.getOutputStream().write(sendScratch, 0, n)
+    }
+  }
   override fun close() = socket.close()
 }
 
@@ -48,6 +58,7 @@ class UsbLink(private val connection: UsbDeviceConnection, private val intf: Usb
     io.writeFully(source, source.size)
   }
   override fun writeFully(source: ByteArray, length: Int) { io.writeFully(source, length) }
+  override fun writeFully(source: ByteBuffer) { io.writeFully(source) }
   override fun close() = io.close()
 }
 

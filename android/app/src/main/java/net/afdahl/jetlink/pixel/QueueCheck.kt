@@ -6,7 +6,7 @@ import java.security.MessageDigest
 
 /** Deterministic wrap/reset fixture, compared against the original numpy queues. */
 object QueueCheck {
-  fun run(): JSONArray {
+  fun run(verifyNative: (PolicyQueues) -> Unit = {}): JSONArray {
     val queue = PolicyQueues()
     val results = JSONArray()
     val payload = ByteArray(PolicyQueues.PAYLOAD_BYTES)
@@ -21,6 +21,7 @@ object QueueCheck {
       for (i in 0 until PolicyQueues.FEATURE_ROW) bytes.putFloat(((frame * 37 + i) % 10007) / 1000f - 5f)
       queue.step(payload, payload.size)
       if (frame in setOf(1, 4, 5, 128, 132, 140, 141, 142, 150)) {
+        verifyNative(queue)
         val row = JSONObject().put("frame", frame)
         fun hash(data: ByteArray) = MessageDigest.getInstance("SHA-256").digest(data).joinToString("") { "%02x".format(it) }
         row.put("img", hash(queue.img)); row.put("big_img", hash(queue.bigImg))

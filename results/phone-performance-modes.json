@@ -1,0 +1,243 @@
+{
+  "date": "2026-09-27",
+  "transport": "adb_tcp_desk_not_direct_usb",
+  "apk_sha256": "e93081126a02e30684b0df0229467eb1f7ecd3c23f13ce8a9d8a8f29358500d4",
+  "model_precision_changed": false,
+  "driving_ready": false,
+  "runs": [
+    {
+      "performance_mode": 5,
+      "frames": 3000,
+      "steady": {
+        "roundtrip_ms": {
+          "mean": 49.47510871417021,
+          "p95": 52.939089987194166,
+          "max": 118.95279999589548
+        },
+        "inference_ms": {
+          "mean": 32.09905141903172,
+          "p95": 34.105199999999996,
+          "max": 38.903
+        },
+        "queue_ms": {
+          "mean": 0.28593689482470785,
+          "p95": 0.394,
+          "max": 2.804
+        },
+        "server_ms": {
+          "mean": 32.65191619365609,
+          "p95": 34.7086,
+          "max": 41.96
+        }
+      },
+      "phone_profile": {
+        "samples": 2995,
+        "receive_with_client_wait": {
+          "mean_ms": 15.988954898163605,
+          "max_ms": 86.231077
+        },
+        "history": {
+          "mean_ms": 0.2859368948247078,
+          "max_ms": 2.804
+        },
+        "input_write": {
+          "mean_ms": 1.7297436884808015,
+          "max_ms": 6.954756
+        },
+        "npu_invoke": {
+          "mean_ms": 29.911526678130215,
+          "max_ms": 33.757213
+        },
+        "output_read": {
+          "mean_ms": 0.4388696020033389,
+          "max_ms": 3.335166
+        },
+        "validation": {
+          "mean_ms": 0.26743627679465776,
+          "max_ms": 2.313509
+        },
+        "telemetry": {
+          "mean_ms": 0.020765003672787982,
+          "max_ms": 0.520218
+        },
+        "reply_pack": {
+          "mean_ms": 0.06560600801335559,
+          "max_ms": 0.533344
+        },
+        "reply_send": {
+          "mean_ms": 0.6344303839732888,
+          "max_ms": 4.574297
+        }
+      },
+      "final_power": {
+        "elapsed_ms": 566559855,
+        "battery_percent": 100,
+        "wireless_powered": false,
+        "usb_powered": true,
+        "ac_powered": false,
+        "battery_status": 4,
+        "battery_temperature_c": 28.8,
+        "battery_current_ua": -6250,
+        "thermal_status": 0,
+        "thermal_label": "Normal"
+      },
+      "sampled_outputs_equal_to_burst": true
+    },
+    {
+      "performance_mode": 4,
+      "frames": 3000,
+      "steady": {
+        "roundtrip_ms": {
+          "mean": 61.36756871477312,
+          "p95": 65.01222999359015,
+          "max": 122.28079998749308
+        },
+        "inference_ms": {
+          "mean": 43.82560333889816,
+          "p95": 46.0133,
+          "max": 48.93
+        },
+        "queue_ms": {
+          "mean": 0.29682537562604344,
+          "p95": 0.4122999999999997,
+          "max": 3.749
+        },
+        "server_ms": {
+          "mean": 44.39536327212021,
+          "p95": 46.6474,
+          "max": 49.464
+        }
+      },
+      "phone_profile": {
+        "samples": 2995,
+        "receive_with_client_wait": {
+          "mean_ms": 16.0395481672788,
+          "max_ms": 78.12736
+        },
+        "history": {
+          "mean_ms": 0.29682537562604344,
+          "max_ms": 3.749
+        },
+        "input_write": {
+          "mean_ms": 1.7585865155258766,
+          "max_ms": 5.645391
+        },
+        "npu_invoke": {
+          "mean_ms": 41.57629163973289,
+          "max_ms": 44.89487
+        },
+        "output_read": {
+          "mean_ms": 0.4703325903171953,
+          "max_ms": 2.889046
+        },
+        "validation": {
+          "mean_ms": 0.2734405185308848,
+          "max_ms": 5.646337
+        },
+        "telemetry": {
+          "mean_ms": 0.021620721535893152,
+          "max_ms": 0.413813
+        },
+        "reply_pack": {
+          "mean_ms": 0.06669612921535893,
+          "max_ms": 2.786969
+        },
+        "reply_send": {
+          "mean_ms": 0.710084916193656,
+          "max_ms": 4.907438
+        }
+      },
+      "final_power": {
+        "elapsed_ms": 566747490,
+        "battery_percent": 100,
+        "wireless_powered": false,
+        "usb_powered": true,
+        "ac_powered": false,
+        "battery_status": 4,
+        "battery_temperature_c": 31,
+        "battery_current_ua": -582812,
+        "thermal_status": 0,
+        "thermal_label": "Normal"
+      },
+      "sampled_outputs_equal_to_burst": true
+    },
+    {
+      "performance_mode": 3,
+      "frames": 3000,
+      "steady": {
+        "roundtrip_ms": {
+          "mean": 49.64518287141951,
+          "p95": 54.134780011372634,
+          "max": 81.7852999898605
+        },
+        "inference_ms": {
+          "mean": 31.95226878130217,
+          "p95": 33.864599999999996,
+          "max": 40.256
+        },
+        "queue_ms": {
+          "mean": 0.2966,
+          "p95": 0.423,
+          "max": 2.474
+        },
+        "server_ms": {
+          "mean": 32.51729282136895,
+          "p95": 34.476299999999995,
+          "max": 41.565
+        }
+      },
+      "phone_profile": {
+        "samples": 2995,
+        "receive_with_client_wait": {
+          "mean_ms": 16.29766927712855,
+          "max_ms": 49.69551
+        },
+        "history": {
+          "mean_ms": 0.2966,
+          "max_ms": 2.474
+        },
+        "input_write": {
+          "mean_ms": 1.6984912210350585,
+          "max_ms": 9.631026
+        },
+        "npu_invoke": {
+          "mean_ms": 29.797186998330552,
+          "max_ms": 33.365765
+        },
+        "output_read": {
+          "mean_ms": 0.43752066076794655,
+          "max_ms": 3.004452
+        },
+        "validation": {
+          "mean_ms": 0.2689206390651085,
+          "max_ms": 2.648229
+        },
+        "telemetry": {
+          "mean_ms": 0.02074814223706177,
+          "max_ms": 0.288969
+        },
+        "reply_pack": {
+          "mean_ms": 0.06839744741235393,
+          "max_ms": 1.010599
+        },
+        "reply_send": {
+          "mean_ms": 0.6398910657762938,
+          "max_ms": 3.566719
+        }
+      },
+      "final_power": {
+        "elapsed_ms": 566901433,
+        "battery_percent": 100,
+        "wireless_powered": false,
+        "usb_powered": true,
+        "ac_powered": false,
+        "battery_status": 4,
+        "battery_temperature_c": 32,
+        "battery_current_ua": 5468,
+        "thermal_status": 0,
+        "thermal_label": "Normal"
+      },
+      "sampled_outputs_equal_to_burst": true
+    }
+  ]
+}

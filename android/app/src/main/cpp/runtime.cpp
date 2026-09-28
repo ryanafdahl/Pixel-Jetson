@@ -1,6 +1,7 @@
 #include <jni.h>
 #include <cstdlib>
 #include <cstring>
+#include <chrono>
 #include <memory>
 #include <stdexcept>
 #include <string>
@@ -44,8 +45,9 @@ struct Runtime {
 };
 
 extern "C" JNIEXPORT jlong JNICALL
-Java_net_afdahl_jetlink_pixel_NativeRuntime_create(JNIEnv* jni, jobject, jstring path, jstring libs) {
+Java_net_afdahl_jetlink_pixel_NativeRuntime_create(JNIEnv* jni, jobject, jstring path, jstring libs, jint performance_mode) {
   try {
+    if (performance_mode < 3 || performance_mode > 5) throw std::runtime_error("Unsupported performance mode");
     Utf file(jni, path), library(jni, libs);
     auto r = std::make_unique<Runtime>();
     LiteRtEnvOption option{};
@@ -57,9 +59,9 @@ Java_net_afdahl_jetlink_pixel_NativeRuntime_create(JNIEnv* jni, jobject, jstring
     CHECK(LiteRtCreateOptions(&r->options));
     CHECK(LiteRtSetOptionsHardwareAccelerators(r->options, kLiteRtHwAcceleratorNpu));
     // Exact TOML encoding used by LiteRT 2.2.0's public GoogleTensorOptions.
-    // This selects the same burst setting as benchmark_model; it is not a
-    // thermal qualification and never changes model precision.
-    std::string toml = "performance_mode = " + std::to_string(kLiteRtGoogleTensorOptionsPerformanceModeBurst) + "\n";
+    // Default is burst; isolated desk tests can also compare high/sustained.
+    // This never changes model precision or bypasses thermal management.
+    std::string toml = "performance_mode = " + std::to_string(performance_mode) + "\n";
     char* payload = strdup(toml.c_str());
     LiteRtOpaqueOptions opaque = nullptr;
     auto status = LiteRtCreateOpaqueOptions("google_tensor", payload, free, &opaque);
@@ -115,16 +117,23 @@ Java_net_afdahl_jetlink_pixel_NativeRuntime_write(JNIEnv* jni, jobject, jlong ha
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_net_afdahl_jetlink_pixel_NativeRuntime_run(JNIEnv* jni, jobject, jlong handle, jfloatArray result) {
+Java_net_afdahl_jetlink_pixel_NativeRuntime_run(JNIEnv* jni, jobject, jlong handle, jfloatArray result, jlongArray timings) {
   try {
     auto* r = reinterpret_cast<Runtime*>(handle);
     if (!r) throw std::runtime_error("Closed runtime");
     if (!result || jni->GetArrayLength(result) != 18452) throw std::runtime_error("Incorrect output size");
+    if (!timings || jni->GetArrayLength(timings) != 2) throw std::runtime_error("Incorrect timing output size");
+    const auto start = std::chrono::steady_clock::now();
     CHECK(LiteRtRunCompiledModel(r->compiled, 0, 6, r->inputs, 1, &r->output));
+    const auto invoked = std::chrono::steady_clock::now();
     void* memory;
     CHECK(LiteRtLockTensorBuffer(r->output, &memory, kLiteRtTensorBufferLockModeRead));
     jni->SetFloatArrayRegion(result, 0, 18452, static_cast<const float*>(memory));
     CHECK(LiteRtUnlockTensorBuffer(r->output));
+    const auto end = std::chrono::steady_clock::now();
+    const jlong ns[] = {std::chrono::duration_cast<std::chrono::nanoseconds>(invoked - start).count(),
+                        std::chrono::duration_cast<std::chrono::nanoseconds>(end - invoked).count()};
+    jni->SetLongArrayRegion(timings, 0, 2, ns);
   } catch (const std::exception& e) { fail(jni, e); }
 }
 
@@ -144,4 +153,77 @@ Java_net_afdahl_jetlink_pixel_NativeRuntime_roundHalf(JNIEnv* jni, jobject, jflo
   }
   for (; i < count; ++i) values[i] = static_cast<float>(static_cast<__fp16>(values[i]));
   jni->ReleaseFloatArrayElements(array, values, 0);
+}
+
+// Copy sampled recurrent rows once, directly from the direct history buffer.
+extern "C" JNIEXPORT void JNICALL
+Java_net_afdahl_jetlink_pixel_NativeRuntime_writeFeatureHistory(JNIEnv* jni, jobject, jlong handle, jobject history, jint head) {
+  try {
+    auto* r = reinterpret_cast<Runtime*>(handle);
+    constexpr size_t row = 16384 * sizeof(float);
+    if (!r || head < 0 || head >= 128 || !history || jni->GetDirectBufferCapacity(history) != 128 * row)
+      throw std::runtime_error("Invalid direct feature history");
+    auto* source = static_cast<const char*>(jni->GetDirectBufferAddress(history));
+    if (!source) throw std::runtime_error("Feature history must be direct");
+    void* memory;
+    CHECK(LiteRtLockTensorBuffer(r->inputs[5], &memory, kLiteRtTensorBufferLockModeWrite));
+    for (int i = 0; i < 32; ++i)
+      memcpy(static_cast<char*>(memory) + i * row, source + ((head + 4 * i) % 128) * row, row);
+    CHECK(LiteRtUnlockTensorBuffer(r->inputs[5]));
+  } catch (const std::exception& e) { fail(jni, e); }
+}
+
+// Startup-only check of the actual LiteRT input, including wrap/reset samples.
+extern "C" JNIEXPORT jboolean JNICALL
+Java_net_afdahl_jetlink_pixel_NativeRuntime_verifyFeatureInput(JNIEnv* jni, jobject, jlong handle, jfloatArray expected) {
+  try {
+    auto* r = reinterpret_cast<Runtime*>(handle);
+    if (!r || !expected || jni->GetArrayLength(expected) != 32 * 16384)
+      throw std::runtime_error("Invalid feature verification input");
+    void* memory;
+    CHECK(LiteRtLockTensorBuffer(r->inputs[5], &memory, kLiteRtTensorBufferLockModeRead));
+    float row[16384];
+    bool same = true;
+    for (int i = 0; i < 32; ++i) {
+      jni->GetFloatArrayRegion(expected, i * 16384, 16384, row);
+      if (memcmp(static_cast<const char*>(memory) + i * sizeof(row), row, sizeof(row))) same = false;
+    }
+    CHECK(LiteRtUnlockTensorBuffer(r->inputs[5]));
+    return same;
+  } catch (const std::exception& e) { fail(jni, e); return false; }
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_net_afdahl_jetlink_pixel_NativeRuntime_writeImageHistory(JNIEnv* jni, jobject, jlong handle, jint index, jobject history, jint head) {
+  try {
+    auto* r = reinterpret_cast<Runtime*>(handle);
+    constexpr size_t row = 6 * 128 * 256;
+    if (!r || index < 0 || index > 1 || head < 0 || head >= 5 || !history || jni->GetDirectBufferCapacity(history) != 5 * row)
+      throw std::runtime_error("Invalid direct image history");
+    auto* source = static_cast<const char*>(jni->GetDirectBufferAddress(history));
+    if (!source) throw std::runtime_error("Image history must be direct");
+    void* memory;
+    CHECK(LiteRtLockTensorBuffer(r->inputs[index], &memory, kLiteRtTensorBufferLockModeWrite));
+    memcpy(memory, source + head * row, row);
+    memcpy(static_cast<char*>(memory) + row, source + ((head + 4) % 5) * row, row);
+    CHECK(LiteRtUnlockTensorBuffer(r->inputs[index]));
+  } catch (const std::exception& e) { fail(jni, e); }
+}
+
+extern "C" JNIEXPORT jboolean JNICALL
+Java_net_afdahl_jetlink_pixel_NativeRuntime_verifyImageInput(JNIEnv* jni, jobject, jlong handle, jint index, jbyteArray expected) {
+  try {
+    auto* r = reinterpret_cast<Runtime*>(handle);
+    if (!r || index < 0 || index > 1 || !expected || jni->GetArrayLength(expected) != r->logical[index])
+      throw std::runtime_error("Invalid image verification input");
+    auto* bytes = jni->GetByteArrayElements(expected, nullptr);
+    if (!bytes) return false;
+    void* memory;
+    auto status = LiteRtLockTensorBuffer(r->inputs[index], &memory, kLiteRtTensorBufferLockModeRead);
+    if (status != kLiteRtStatusOk) { jni->ReleaseByteArrayElements(expected, bytes, JNI_ABORT); check(status, "lock verification input"); }
+    bool same = !memcmp(memory, bytes, r->logical[index]);
+    jni->ReleaseByteArrayElements(expected, bytes, JNI_ABORT);
+    CHECK(LiteRtUnlockTensorBuffer(r->inputs[index]));
+    return same;
+  } catch (const std::exception& e) { fail(jni, e); return false; }
 }

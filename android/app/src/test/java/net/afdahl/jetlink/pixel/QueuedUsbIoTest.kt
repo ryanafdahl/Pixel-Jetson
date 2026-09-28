@@ -76,4 +76,32 @@ class QueuedUsbIoTest {
       assertEquals(1, backend.writes.size)
     }
   }
+
+  @Test fun directReplyRemainsIdenticalAcrossInterveningControlWrite() {
+    val backend = Fake()
+    QueuedUsbIo(backend).use { io ->
+      val bytes = ByteArray(74000) { (it % 251).toByte() }
+      val direct = java.nio.ByteBuffer.allocateDirect(bytes.size)
+      direct.put(bytes); direct.flip()
+      io.writeFully(direct)
+      io.writeFully(byteArrayOf(9, 8, 7), 3)
+      direct.position(0)
+      io.writeFully(direct)
+      assertArrayEquals(bytes, backend.writes[0])
+      assertArrayEquals(byteArrayOf(9, 8, 7), backend.writes[1])
+      assertArrayEquals(bytes, backend.writes[2])
+    }
+  }
+  @Test fun directReplyTimeoutPreventsSubsequentBufferReuse() {
+    val backend = Fake().apply { stallWrite = true }
+    QueuedUsbIo(backend, writeTimeoutMs = 20).use { io ->
+      val direct = java.nio.ByteBuffer.allocateDirect(74000)
+      repeat(2) {
+        direct.position(0)
+        try { io.writeFully(direct); fail("Expected timeout") }
+        catch (_: EOFException) {}
+      }
+      assertEquals(1, backend.writes.size)
+    }
+  }
 }

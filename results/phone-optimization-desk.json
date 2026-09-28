@@ -1,0 +1,324 @@
+{
+  "date": "2026-09-27",
+  "transport": "adb_tcp_desk_not_direct_usb",
+  "driving_ready": false,
+  "candidate": "direct-history-v3",
+  "apk_sha256": "e93081126a02e30684b0df0229467eb1f7ecd3c23f13ce8a9d8a8f29358500d4",
+  "jvm_tests_passed": 19,
+  "queue_hashes_matched": 54,
+  "native_history_checks": "9 wrap/reset samples; actual LiteRT input byte comparison",
+  "fixture_matches_previous_g6_exactly": true,
+  "recurrent_frames_matching_previous_build": [
+    0,
+    599
+  ],
+  "warmup_frames_excluded": 5,
+  "runs": [
+    {
+      "label": "baseline-600",
+      "frames": 600,
+      "steady": {
+        "roundtrip_ms": {
+          "mean": 51.700575629634656,
+          "p95": 55.41046001308132,
+          "max": 74.96179998270236
+        },
+        "inference_ms": {
+          "mean": 31.860057142857137,
+          "p95": 33.7649,
+          "max": 35.657
+        },
+        "queue_ms": {
+          "mean": 2.2602067226890754,
+          "p95": 2.8149999999999995,
+          "max": 3.975
+        },
+        "server_ms": {
+          "mean": 34.3884537815126,
+          "p95": 36.5353,
+          "max": 38.709
+        }
+      },
+      "phone_profile": null,
+      "ordinary_driving_refused": true,
+      "wrong_model_refused": true,
+      "duplicate_does_not_advance": true,
+      "malformed_frame_refused": true
+    },
+    {
+      "label": "direct-history-600",
+      "frames": 600,
+      "steady": {
+        "roundtrip_ms": {
+          "mean": 49.54585092515927,
+          "p95": 53.686640009982504,
+          "max": 73.82340001640841
+        },
+        "inference_ms": {
+          "mean": 31.92752605042017,
+          "p95": 34.043,
+          "max": 36.122
+        },
+        "queue_ms": {
+          "mean": 0.5165226890756301,
+          "p95": 0.7274999999999997,
+          "max": 2.113
+        },
+        "server_ms": {
+          "mean": 32.72227899159664,
+          "p95": 34.9161,
+          "max": 37.516
+        }
+      },
+      "phone_profile": {
+        "samples": 595,
+        "receive_with_client_wait": {
+          "mean_ms": 16.003230897478993,
+          "max_ms": 59.755859
+        },
+        "history": {
+          "mean_ms": 0.5165226890756303,
+          "max_ms": 2.113
+        },
+        "input_write": {
+          "mean_ms": 1.647235381512605,
+          "max_ms": 4.51461
+        },
+        "npu_invoke": {
+          "mean_ms": 29.817611315966385,
+          "max_ms": 33.262448
+        },
+        "output_read": {
+          "mean_ms": 0.4357982067226891,
+          "max_ms": 4.29974
+        },
+        "validation": {
+          "mean_ms": 0.2787201983193277,
+          "max_ms": 2.391869
+        },
+        "telemetry": {
+          "mean_ms": 0.01818562521008403,
+          "max_ms": 0.278359
+        },
+        "reply_pack": {
+          "mean_ms": 0.09429611260504202,
+          "max_ms": 0.591068
+        },
+        "reply_send": {
+          "mean_ms": 0.6343111798319327,
+          "max_ms": 3.626379
+        }
+      },
+      "ordinary_driving_refused": true,
+      "wrong_model_refused": true,
+      "duplicate_does_not_advance": true,
+      "malformed_frame_refused": true
+    },
+    {
+      "label": "direct-images-600",
+      "frames": 600,
+      "steady": {
+        "roundtrip_ms": {
+          "mean": 49.061339831531456,
+          "p95": 52.12644999846816,
+          "max": 68.15269999788143
+        },
+        "inference_ms": {
+          "mean": 31.924100840336134,
+          "p95": 33.9677,
+          "max": 35.618
+        },
+        "queue_ms": {
+          "mean": 0.28497478991596636,
+          "p95": 0.41229999999999994,
+          "max": 1.693
+        },
+        "server_ms": {
+          "mean": 32.49252605042017,
+          "p95": 34.5873,
+          "max": 38.251
+        }
+      },
+      "phone_profile": {
+        "samples": 595,
+        "receive_with_client_wait": {
+          "mean_ms": 15.774200285714285,
+          "max_ms": 35.953567
+        },
+        "history": {
+          "mean_ms": 0.2849747899159664,
+          "max_ms": 1.693
+        },
+        "input_write": {
+          "mean_ms": 1.7119861025210084,
+          "max_ms": 3.501667
+        },
+        "npu_invoke": {
+          "mean_ms": 29.754129346218487,
+          "max_ms": 32.640036
+        },
+        "output_read": {
+          "mean_ms": 0.43329118655462184,
+          "max_ms": 1.48375
+        },
+        "validation": {
+          "mean_ms": 0.2839525277310924,
+          "max_ms": 2.690213
+        },
+        "telemetry": {
+          "mean_ms": 0.018277285714285715,
+          "max_ms": 0.153063
+        },
+        "reply_pack": {
+          "mean_ms": 0.0990651462184874,
+          "max_ms": 0.952353
+        },
+        "reply_send": {
+          "mean_ms": 0.6038174134453782,
+          "max_ms": 2.923125
+        }
+      },
+      "ordinary_driving_refused": true,
+      "wrong_model_refused": true,
+      "duplicate_does_not_advance": true,
+      "malformed_frame_refused": true
+    },
+    {
+      "label": "direct-final-600",
+      "frames": 600,
+      "steady": {
+        "roundtrip_ms": {
+          "mean": 49.50405781576997,
+          "p95": 53.13669002207462,
+          "max": 61.76849998882972
+        },
+        "inference_ms": {
+          "mean": 32.139821848739494,
+          "p95": 34.1381,
+          "max": 36.975
+        },
+        "queue_ms": {
+          "mean": 0.29002184873949577,
+          "p95": 0.4191999999999998,
+          "max": 1.261
+        },
+        "server_ms": {
+          "mean": 32.71720672268907,
+          "p95": 34.8118,
+          "max": 37.58
+        }
+      },
+      "phone_profile": {
+        "samples": 595,
+        "receive_with_client_wait": {
+          "mean_ms": 16.046805411764705,
+          "max_ms": 27.776588
+        },
+        "history": {
+          "mean_ms": 0.29002184873949577,
+          "max_ms": 1.261
+        },
+        "input_write": {
+          "mean_ms": 1.7200915579831932,
+          "max_ms": 4.299401
+        },
+        "npu_invoke": {
+          "mean_ms": 29.95502886722689,
+          "max_ms": 32.727526
+        },
+        "output_read": {
+          "mean_ms": 0.438849043697479,
+          "max_ms": 1.481562
+        },
+        "validation": {
+          "mean_ms": 0.2878752554621849,
+          "max_ms": 2.253281
+        },
+        "telemetry": {
+          "mean_ms": 0.019194672268907562,
+          "max_ms": 0.100078
+        },
+        "reply_pack": {
+          "mean_ms": 0.07431783865546218,
+          "max_ms": 0.206433
+        },
+        "reply_send": {
+          "mean_ms": 0.6098755445378151,
+          "max_ms": 2.636953
+        }
+      },
+      "ordinary_driving_refused": true,
+      "wrong_model_refused": true,
+      "duplicate_does_not_advance": true,
+      "malformed_frame_refused": true
+    },
+    {
+      "label": "installed-final-600",
+      "frames": 600,
+      "steady": {
+        "roundtrip_ms": {
+          "mean": 49.22862168017016,
+          "p95": 52.75077001133468,
+          "max": 56.83460002182983
+        },
+        "inference_ms": {
+          "mean": 32.01425210084034,
+          "p95": 34.0465,
+          "max": 35.836
+        },
+        "queue_ms": {
+          "mean": 0.2775025210084034,
+          "p95": 0.3874999999999998,
+          "max": 1.293
+        },
+        "server_ms": {
+          "mean": 32.57267394957984,
+          "p95": 34.6216,
+          "max": 37.195
+        }
+      },
+      "phone_profile": {
+        "samples": 595,
+        "receive_with_client_wait": {
+          "mean_ms": 15.796868183193277,
+          "max_ms": 24.165634
+        },
+        "history": {
+          "mean_ms": 0.2775025210084034,
+          "max_ms": 1.293
+        },
+        "input_write": {
+          "mean_ms": 1.7436566605042016,
+          "max_ms": 4.752734
+        },
+        "npu_invoke": {
+          "mean_ms": 29.809078678991597,
+          "max_ms": 33.459313
+        },
+        "output_read": {
+          "mean_ms": 0.4336388907563025,
+          "max_ms": 1.736553
+        },
+        "validation": {
+          "mean_ms": 0.28142065882352946,
+          "max_ms": 2.552016
+        },
+        "telemetry": {
+          "mean_ms": 0.018470240336134456,
+          "max_ms": 0.216301
+        },
+        "reply_pack": {
+          "mean_ms": 0.0807687243697479,
+          "max_ms": 0.920365
+        },
+        "reply_send": {
+          "mean_ms": 0.6804498033613445,
+          "max_ms": 3.743047
+        }
+      },
+      "fixture_first_last_match_reference": true,
+      "frames_0_599_match_baseline": true
+    }
+  ],
+  "installed_apk_sha256": "17dc73316c82110d14f937b58957420bf1c4ca47b094cd69100639118cf9ec97"
+}

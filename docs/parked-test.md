@@ -59,6 +59,8 @@ cat /sys/class/udc/*/current_speed
 ```
 
 Use `result.json`, not a screen impression, for pass/fail. It must show
-`passed_protocol: true`, `transport: usb`, and 120 frames. Inspect power fields
+`passed_protocol: true`, `transport: usb`, and the requested frame count. After a short pass, use `--frames 1200` for a
+longer run with a new output directory. Updated builds also save `phone_profile`
+to separate phone processing stages. Inspect power fields
 for actual wireless charging under load. A short synthetic pass does not prove
 reconnect reliability, thermal endurance or numerical suitability for driving.
