@@ -114,19 +114,18 @@ Java_net_afdahl_jetlink_pixel_NativeRuntime_write(JNIEnv* jni, jobject, jlong ha
   } catch (const std::exception& e) { fail(jni, e); }
 }
 
-extern "C" JNIEXPORT jfloatArray JNICALL
-Java_net_afdahl_jetlink_pixel_NativeRuntime_run(JNIEnv* jni, jobject, jlong handle) {
+extern "C" JNIEXPORT void JNICALL
+Java_net_afdahl_jetlink_pixel_NativeRuntime_run(JNIEnv* jni, jobject, jlong handle, jfloatArray result) {
   try {
     auto* r = reinterpret_cast<Runtime*>(handle);
     if (!r) throw std::runtime_error("Closed runtime");
+    if (!result || jni->GetArrayLength(result) != 18452) throw std::runtime_error("Incorrect output size");
     CHECK(LiteRtRunCompiledModel(r->compiled, 0, 6, r->inputs, 1, &r->output));
     void* memory;
     CHECK(LiteRtLockTensorBuffer(r->output, &memory, kLiteRtTensorBufferLockModeRead));
-    auto result = jni->NewFloatArray(18452);
-    if (result) jni->SetFloatArrayRegion(result, 0, 18452, static_cast<const float*>(memory));
+    jni->SetFloatArrayRegion(result, 0, 18452, static_cast<const float*>(memory));
     CHECK(LiteRtUnlockTensorBuffer(r->output));
-    return result;
-  } catch (const std::exception& e) { fail(jni, e); return nullptr; }
+  } catch (const std::exception& e) { fail(jni, e); }
 }
 
 extern "C" JNIEXPORT void JNICALL

@@ -1,61 +1,54 @@
-# Pixel / Jetson JetLink preparation
+# Pixel-Jetson
 
-Reusable setup and evidence for running the TGCv2 model on a Pixel's Google
-Tensor NPU through JetLink. Pixel 10 Pro XL requires a Tensor G5 artifact;
-Pixel 11 Pro XL requires a separate Tensor G6 artifact. The existing Jetson
-TensorRT deployment remains a separate backend.
+Run the TGCv2 model on a Pixel's Google Tensor NPU through JetLink, with reusable device setup, an Android test app, and measured results. The Jetson TensorRT deployment remains a separate backend.
 
-**Current milestone: 120 synthetic recurrent frames passed over direct
-Pixel-to-comma USB. Driving qualification is not complete.** The USB exchange
-averaged 55.584 ms (p95 63.561 ms), exceeding the 50 ms frame budget before
-camera processing is included. See [measured results](docs/results.md).
+**Current stage: parked USB testing. Driving is not yet qualified.**
 
-## Mount-and-plug workflow
+## Start here
 
-The Android app registers for the comma's JetLink USB device and can launch on
-attachment. On the first attachment, choose **JetLink Pixel Test** and Android's
-**Always use** option if shown. Android owns that one-time consent; the app does
-not bypass it. Subsequent matching attachments should launch the chosen default
-and grant access. The default choice was verified saved after the dashboard's
-120-frame physical USB test. Cold-process launch and reboot behavior remain
-unverified.
-The manual Connect button remains a fallback and never opens repeated dialogs
-automatically.
+1. **Prepare your phone and computer:** follow the [setup guide](docs/setup.md).
+2. **Build and install:** compile the model for your phone's chip, then install the Android app using the setup guide.
+3. **Test the connection:** follow the [parked USB test](docs/parked-test.md), connecting the Pixel directly to the comma.
+4. **Review the measurements:** see [test results and limitations](docs/results.md).
 
-The dashboard separates phone work from the complete client-measured USB
-exchange. It shows average, p95, frame count and a 50 ms budget verdict. An
-average below budget does not hide a p95 above it. Measurements are from the
-isolated synthetic test, not camera-to-controls latency. With no measurements,
-the display says waiting rather than declaring a pass.
+| Device | Required model target |
+| --- | --- |
+| Pixel 10 Pro XL | Tensor G5 |
+| Pixel 11 Pro XL | Tensor G6 |
+| Jetson | Separate TensorRT backend |
 
-**The app's automatic launch does not enable driving.** The normal driving
-client is refused while model accuracy is unqualified. The comma's isolated
-parked test currently supplies the frames; it must be started separately.
-The app is an Activity prototype, not a persistent background driving service.
-Its display stays awake and may show over the lock screen; first unlock after
-reboot and USB/security settings may still require interaction.
+G5 and G6 compiled models are not interchangeable. Obtain the Tensor SDK through your own Google authorization.
 
-## Setup and use
+## What works today
 
-1. [Prepare a Pixel and development machine](docs/setup.md).
-2. Compile for the exact phone chip, build and install the app.
-3. [Run the isolated parked USB test](docs/parked-test.md).
-4. Validate automatic launch and remembered permission by unplugging/replugging.
-5. Qualify numerical accuracy, the full frame budget, thermal endurance and
-   fallback behavior before considering driving integration.
+- **Direct USB:** two 120-frame synthetic recurrent tests completed successfully.
+- **Automatic app launch:** Android's saved USB default was verified. Cold-process launch and reboot behavior still need testing.
+- **Readable dashboard:** average, p95, frame count, and a written 50 ms budget status, with high-contrast colors.
+- **Correctness checks:** history queues, duplicate requests, model identity, and malformed requests are checked.
 
-Source layout:
+The latest completed dashboard USB test averaged **56.8 ms**, with **64.2 ms p95**. It is over the 50 ms budget, even before camera processing and control integration.
 
-- `android/`: native LiteRT bridge, Android UI/USB protocol and host test clients.
-- `model-tools/`: conversion, fixture, shape specialization and compiler scripts.
-- `results/`: sanitized measurements, without phone identifiers or private logs.
-- `docs/`: reusable setup, test steps, results and known limitations.
+The next candidate uses **asynchronous USB transfers and reusable buffers**. Desk checks passed; direct USB performance with the better cable is still pending. See [optimization details, checks, and rollback](docs/async-usb.md).
 
-The repository excludes the licensed Tensor SDK archive/compiler, model weights,
-runtime binaries, APKs, credentials, phone serials and private device logs. Obtain
-the SDK through your own Google authorization. The app verifies the original
-model identity, compiled model checksum and phone chip before accepting work.
+## Mount, plug in, and test
 
-Android's supported attachment/default behavior is documented in the
-[USB host guide](https://developer.android.com/develop/connectivity/usb/host)
-and [default-handler implementation](https://android.googlesource.com/platform/frameworks/base/+/master/services/usb/java/com/android/server/usb/UsbProfileGroupSettingsManager.java).
+On the first connection, select **JetLink Pixel Test** and **Always use** if Android offers it. Later matching connections should open the app with USB access. **Connect comma USB** is the manual fallback.
+
+Start the isolated parked test on the comma before plugging in the phone. The phone connects directly to the comma; the computer only starts the test remotely. Keep the vehicle parked and the app visible.
+
+The dashboard uses amber while waiting, green when both average and p95 fit the budget, and red when either exceeds it. A green result describes this synthetic USB test; it does not qualify the system for driving.
+
+## Before driving integration
+
+The app currently refuses the normal driving client. Remaining work includes model accuracy acceptance, complete-frame timing, thermal endurance, and fallback validation. The app is an Activity prototype; startup after reboot and persistent background operation remain unqualified.
+
+## Repository guide
+
+| Location | Contents |
+| --- | --- |
+| [docs](docs/) | Setup, parked testing, results, and limitations |
+| [android](android/) | Android app, native LiteRT bridge, and test clients |
+| [model-tools](model-tools/) | Conversion, fixtures, specialization, and compiler scripts |
+| [results](results/) | Sanitized measurements |
+
+Licensed SDK files, model weights, runtime binaries, APKs, credentials, phone identifiers, and private logs are excluded.

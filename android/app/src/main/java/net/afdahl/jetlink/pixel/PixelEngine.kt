@@ -14,6 +14,7 @@ class PixelEngine(context: Context) : AutoCloseable {
   private var handle: Long = 0
   private val names = listOf("img", "big_img", "desire_pulse", "traffic_convention", "action_t", "features_buffer")
   val queues = PolicyQueues()
+  private val output = FloatArray(18452)
 
   init {
     require(Build.SOC_MODEL == manifest.getString("soc")) { "Compiled model is for ${manifest.getString("soc")}, phone is ${Build.SOC_MODEL}" }
@@ -35,7 +36,8 @@ class PixelEngine(context: Context) : AutoCloseable {
     NativeRuntime.write(handle, 0, queues.img, false); NativeRuntime.write(handle, 1, queues.bigImg, false)
     NativeRuntime.write(handle, 2, queues.desire, true); NativeRuntime.write(handle, 3, queues.traffic, true)
     NativeRuntime.write(handle, 4, queues.action, true); NativeRuntime.write(handle, 5, queues.features, true)
-    return NativeRuntime.run(handle)
+    NativeRuntime.run(handle, output)
+    return output
   }
   fun fixture(): FloatArray {
     val hashes = JSONObject()
@@ -52,7 +54,8 @@ class PixelEngine(context: Context) : AutoCloseable {
       }
     }
     File(reports, "fixture-input-hashes.json").writeText(hashes.toString(2))
-    return NativeRuntime.run(handle)
+    NativeRuntime.run(handle, output)
+    return output
   }
   fun saveOutput(name: String, values: FloatArray) {
     val data = ByteArray(values.size * 4)

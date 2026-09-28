@@ -18,6 +18,7 @@ sys.path.insert(0, '/data/openpilot/jetlink_repo')
 from openpilot.common.params import Params
 from jetlink.client import JetlinkClient
 from jetlink import protocol as protocol
+from jetlink.transport.base import LinkError
 
 
 def main():
@@ -30,11 +31,15 @@ def main():
     parser.add_argument('--frames', type=int, default=120)
     parser.add_argument('--connect-timeout', type=int, default=30,
                         help='Seconds allowed for the initial USB permission step (30..300)')
+    parser.add_argument('--hold-seconds', type=int, default=60,
+                        help='Keep completed USB test alive while viewing the dashboard (0..120)')
     args = parser.parse_args()
     if not 10 <= args.frames <= 1200:
         parser.error('frames must be 10..1200')
     if not 30 <= args.connect_timeout <= 300:
         parser.error('connect-timeout must be 30..300')
+    if not 0 <= args.hold_seconds <= 120:
+        parser.error('hold-seconds must be 0..120')
     live = Params()
     def parked():
         if not live.get_bool('IsOffroad'):
@@ -103,6 +108,11 @@ def main():
         signal.alarm(180)
         if hello.get('validation') != 'parked_only':
             raise RuntimeError('Expected the Pixel parked-test app')
+        usb_link = None
+        if args.usb:
+            controller = Path('/sys/class/udc') / client.t.bound_udc
+            usb_link = {name: (controller / name).read_text().strip() for name in ('current_speed', 'state')}
+            print(f'Negotiated USB: {usb_link}; phone transport={hello.get("usb_io", "legacy")}', flush=True)
         expected = manifest['spec']
         spec = client.ensure_engine(expected['sha256'], expected['nbytes'], frame_skip=4, build_timeout=30)
         if spec.to_dict() != expected:
@@ -136,6 +146,7 @@ def main():
                 client._expect(protocol.Msg.STATE_RESP, sequence, 2.0)
         report = {'passed_protocol': True, 'driving_ready': False,
                   'transport': 'usb' if args.usb else 'ssh_adb_tunnel', 'hello': hello,
+                  'usb_link': usb_link,
                   'limitations': 'Synthetic inputs; no cameras, modeld, controls, or steering commands. Accuracy and driving latency remain unqualified.',
                   'frames': rows}
         report['steady'] = {key: {'mean': float(np.mean([r[key] for r in rows[5:]])),
@@ -144,6 +155,16 @@ def main():
                             for key in ('roundtrip_ms', 'inference_ms', 'queue_ms', 'server_ms')}
         (args.output / 'result.json').write_text(json.dumps(report, indent=2))
         print(json.dumps({k: v for k, v in report.items() if k != 'frames'}, indent=2), flush=True)
+        if args.usb and args.hold_seconds:
+            print('RESULT SAVED. Keeping dashboard connected briefly; you may unplug and return the phone.', flush=True)
+            hold_until = time.monotonic() + args.hold_seconds
+            while time.monotonic() < hold_until:
+                parked()
+                try:
+                    client.ping(timeout=2.0)
+                except LinkError:
+                    break  # Completion already saved; unplugging is expected.
+                time.sleep(0.5)
     finally:
         signal.alarm(0)
         try:

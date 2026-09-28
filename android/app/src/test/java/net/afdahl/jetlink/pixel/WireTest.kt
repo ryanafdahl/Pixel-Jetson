@@ -58,29 +58,18 @@ class WireTest {
     assertEquals(480, Wire.little(data).getInt(16))
   }
 
-  @Test fun largeReplyPreservesEveryByteAcrossShortWrites() {
-    val source = ByteArray(74321) { (it % 251).toByte() }
-    val actual = ByteArrayOutputStream()
-    UsbWrites.send(source.size) { offset, length, timeout ->
-      assertTrue(length in 1..16384)
-      assertTrue(timeout in 1..1000)
-      assertEquals(actual.size(), offset)
-      val sent = minOf(length, 4096)
-      actual.write(source, offset, sent)
-      sent
-    }
-    assertArrayEquals(source, actual.toByteArray())
-  }
-
-  @Test fun failedTransferIsNotRetried() {
-    var calls = 0
-    try {
-      UsbWrites.send(74000) { _, _, _ -> calls++; -1 }
-      fail("Failed USB write must terminate the session")
-    } catch (e: EOFException) {
-      assertEquals(1, calls)
-      assertTrue(e.message!!.contains("offset=0/74000"))
-    }
+  @Test fun scratchInputIsUsedOnlyForMatchingInferenceFrames() {
+    val encoded = MemoryLink(ByteArray(0))
+    Wire.send(encoded, 8, 1, ByteArray(100) { 7 })
+    Wire.send(encoded, 15, 2, ByteArray(100) { 9 })
+    val source = MemoryLink(encoded.written.toByteArray())
+    val scratch = ByteArray(100)
+    val inference = Wire.receive(source, inferencePayload = scratch)
+    assertSame(scratch, inference.payload)
+    val ping = Wire.receive(source, inferencePayload = scratch)
+    assertNotSame(scratch, ping.payload)
+    assertTrue(scratch.all { it == 7.toByte() })
+    assertTrue(ping.payload.all { it == 9.toByte() })
   }
 
   @Test(expected = IllegalArgumentException::class) fun rejectsOversizedLengthBeforeAllocating() {

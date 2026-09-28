@@ -7,8 +7,10 @@ import android.hardware.usb.*
 import android.os.Bundle
 import android.os.Build
 import android.util.Log
+import android.graphics.Color
 import android.view.WindowManager
 import android.view.WindowInsets
+import android.view.WindowInsetsController
 import android.widget.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -19,6 +21,10 @@ import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.concurrent.thread
 
 class MainActivity : Activity() {
+  private val screenBackground = Color.rgb(11, 18, 32)
+  private val primaryText = Color.rgb(241, 245, 249)
+  private val secondaryText = Color.rgb(203, 213, 225)
+  private val waitingText = Color.rgb(253, 230, 138)
   private val stop = AtomicBoolean(false)
   private val sessionActive = AtomicBoolean(false)
   private var engine: PixelEngine? = null
@@ -53,10 +59,16 @@ class MainActivity : Activity() {
     super.onCreate(savedInstanceState)
     setTurnScreenOn(true)
     setShowWhenLocked(true)
+    window.decorView.setBackgroundColor(screenBackground)
+    window.statusBarColor = screenBackground
+    window.navigationBarColor = screenBackground
+    window.insetsController?.setSystemBarsAppearance(0,
+      WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS or WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS)
     window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     getExternalFilesDir(null)!!.mkdirs()
     val layout = LinearLayout(this).apply {
       orientation = LinearLayout.VERTICAL
+      setBackgroundColor(screenBackground)
       val margin = (16 * resources.displayMetrics.density).toInt()
       setOnApplyWindowInsetsListener { view, insets ->
         val bars = insets.getInsets(WindowInsets.Type.systemBars())
@@ -64,16 +76,24 @@ class MainActivity : Activity() {
         insets
       }
     }
-    layout.addView(TextView(this).apply { text = "JetLink Pixel · Parked validation"; textSize = 24f })
-    layout.addView(TextView(this).apply { text = "Model accuracy is still being validated. Keep the vehicle parked and this app open."; textSize = 16f })
-    budgetText = TextView(this).apply { text = "Waiting for measured USB exchange\n50 ms budget • no result yet"; textSize = 22f }
-    phoneText = TextView(this).apply { text = "Phone work: waiting for frames"; textSize = 18f }
+    layout.addView(TextView(this).apply { text = "JetLink Pixel · Parked validation"; textSize = 24f; setTextColor(primaryText) })
+    layout.addView(TextView(this).apply { text = "Model accuracy is still being validated. Keep the vehicle parked and this app open."; textSize = 16f; setTextColor(waitingText) })
+    budgetText = TextView(this).apply {
+      text = "Waiting for measured USB exchange\n50 ms budget • no result yet"; textSize = 22f
+      setTextColor(waitingText); setBackgroundColor(Color.rgb(24, 34, 53))
+      val p = (12 * resources.displayMetrics.density).toInt(); setPadding(p, p, p, p)
+    }
+    phoneText = TextView(this).apply { text = "Phone work: waiting for frames"; textSize = 18f; setTextColor(Color.rgb(103, 232, 249)) }
     layout.addView(budgetText)
     layout.addView(phoneText)
-    powerText = TextView(this).apply { textSize = 16f }
+    powerText = TextView(this).apply { textSize = 16f; setTextColor(primaryText) }
     layout.addView(powerText)
-    layout.addView(Button(this).apply { text = "Connect comma USB"; setOnClickListener { scanUsb(requestPermission = true) } })
-    text = TextView(this).apply { textSize = 14f; setTextIsSelectable(true) }
+    layout.addView(Button(this).apply {
+      text = "Connect comma USB"; setTextColor(Color.WHITE)
+      backgroundTintList = android.content.res.ColorStateList.valueOf(Color.rgb(29, 78, 216))
+      setOnClickListener { scanUsb(requestPermission = true) }
+    })
+    text = TextView(this).apply { textSize = 14f; setTextColor(secondaryText); setTextIsSelectable(true) }
     layout.addView(ScrollView(this).apply { addView(text) }, LinearLayout.LayoutParams(-1, 0, 1f))
     setContentView(layout)
     powerText.post(updatePower)
@@ -121,7 +141,14 @@ class MainActivity : Activity() {
   private fun dashboard(phone: String?, budget: String?) {
     runOnUiThread {
       if (phone != null) phoneText.text = phone
-      if (budget != null) budgetText.text = budget
+      if (budget != null) {
+        budgetText.text = budget
+        budgetText.setTextColor(when {
+          budget.contains("OVER 50") -> Color.rgb(253, 164, 175)
+          budget.contains("WITHIN 50") -> Color.rgb(134, 239, 172)
+          else -> waitingText
+        })
+      }
     }
   }
 

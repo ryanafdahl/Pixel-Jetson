@@ -10,13 +10,18 @@ class Session(private val engine: PixelEngine, private val power: PowerTelemetry
   private var ready = false
   private var frames = 0
   private var lastSequence: Int? = null
-  private var previousReply: ByteArray? = null
+  private var previousReply = false
+  private val replyBuffer = InferenceReply()
+  private val inputBuffer = ByteArray(PolicyQueues.PAYLOAD_BYTES)
+  private val headerBuffer = ByteArray(32)
+  private val paddingBuffer = ByteArray(16384)
   private var lastFrame = 0
   private var stats = FrameStats()
 
   private fun state() = JSONObject().put("device", "${Build.MODEL} / ${Build.SOC_MODEL}")
     .put("validation", "parked_only").put("frames_served", frames)
     .put("power", power.snapshot()).put("usb_host_session", linkKind == "USB")
+    .put("usb_io", "queued-v1")
 
   private fun json(link: Link, type: Int, seq: Int, data: JSONObject) =
     Wire.send(link, type, seq, data.toString().toByteArray(Charsets.UTF_8))
@@ -24,7 +29,7 @@ class Session(private val engine: PixelEngine, private val power: PowerTelemetry
   fun run(link: Link, stopped: AtomicBoolean) {
     engine.queues.reset()
     while (!stopped.get()) {
-      val msg = Wire.receive(link)
+      val msg = Wire.receive(link, headerBuffer, inputBuffer, paddingBuffer)
       when (msg.type) {
         1 -> json(link, 2, msg.sequence, state().put("protocol", 2).put("engine_state", "parked_test_only")
           .put("loaded", engine.spec.getString("sha256")))
@@ -33,7 +38,7 @@ class Session(private val engine: PixelEngine, private val power: PowerTelemetry
           ready = request.optString("validation_mode") == "parked" &&
             request.optString("sha256") == engine.spec.getString("sha256") &&
             request.optLong("nbytes") == engine.spec.getLong("nbytes") && request.optInt("frame_skip", 4) == 4
-          engine.queues.reset(); lastSequence = null; previousReply = null
+          engine.queues.reset(); lastSequence = null; previousReply = false
           if (ready) {
             frames = 0; stats = FrameStats()
             dashboard("Phone work: waiting for frames", "Connected • waiting for measured USB exchange\n50 ms budget • no result yet")
@@ -47,8 +52,8 @@ class Session(private val engine: PixelEngine, private val power: PowerTelemetry
         }
         8 -> {
           // Replaying a reply must not advance recurrent history a second time.
-          if (msg.sequence == lastSequence && previousReply != null) {
-            Wire.send(link, 9, msg.sequence, previousReply!!); continue
+          if (msg.sequence == lastSequence && previousReply) {
+            replyBuffer.send(link); continue
           }
           if (lastSequence != null && Integer.compareUnsigned(msg.sequence, lastSequence!!) < 0) {
             json(link, 14, msg.sequence, JSONObject().put("error", "stale_sequence")); continue
@@ -74,13 +79,10 @@ class Session(private val engine: PixelEngine, private val power: PowerTelemetry
           val totalUs = ((System.nanoTime() - start) / 1000).toInt()
           val wantState = msg.payload.size >= 8 && Wire.little(msg.payload).getInt(4) and 2 != 0
           val telemetry = if (wantState) state().toString().toByteArray() else ByteArray(0)
-          val reply = ByteArray(20 + values.size * 4 + telemetry.size)
-          val bytes = Wire.little(reply)
-          bytes.putInt(frame).putInt(status).putInt(inferUs).putInt(queueUs).putInt(totalUs)
-          values.forEach { bytes.putFloat(it) }; bytes.put(telemetry)
-          if (linkKind == "USB" && frames == 0) report("First frame $frame: status=$status, outputs=${values.size}, TPU=${inferUs / 1000.0} ms; sending ${reply.size + 32} bytes")
-          Wire.send(link, 9, msg.sequence, reply)
-          lastSequence = msg.sequence; previousReply = reply; lastFrame = frame
+          replyBuffer.encode(link.transmitPacketSize, msg.sequence, frame, status, inferUs, queueUs, totalUs, values, telemetry)
+          if (linkKind == "USB" && frames == 0) report("First frame $frame: status=$status, outputs=${values.size}, TPU=${inferUs / 1000.0} ms; async USB reply")
+          replyBuffer.send(link)
+          lastSequence = msg.sequence; previousReply = true; lastFrame = frame
           if (status == 0) {
             frames++
             val display = stats.add(totalUs / 1000.0)

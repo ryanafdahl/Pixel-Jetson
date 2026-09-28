@@ -14,6 +14,7 @@ interface Link : Closeable {
   val transmitPacketSize: Int get() = 1024
   fun readFully(destination: ByteArray, offset: Int, length: Int)
   fun writeFully(source: ByteArray)
+  fun writeFully(source: ByteArray, length: Int) { writeFully(source.copyOf(length)) }
 }
 
 class TcpLink(private val socket: Socket) : Link {
@@ -28,6 +29,7 @@ class TcpLink(private val socket: Socket) : Link {
     }
   }
   override fun writeFully(source: ByteArray) { socket.getOutputStream().write(source) }
+  override fun writeFully(source: ByteArray, length: Int) { socket.getOutputStream().write(source, 0, length) }
   override fun close() = socket.close()
 }
 
@@ -37,50 +39,16 @@ class UsbLink(private val connection: UsbDeviceConnection, private val intf: Usb
   private val incoming = endpoints.single { it.direction == UsbConstants.USB_DIR_IN }
   private val outgoing = endpoints.single { it.direction == UsbConstants.USB_DIR_OUT }
   override val transmitPacketSize: Int get() = outgoing.maxPacketSize
-  private val buffer = ByteArray(16384)
-  private var begin = 0
-  private var end = 0
   init { require(connection.claimInterface(intf, true)) { "Cannot claim JetLink USB interface" } }
+  private val io = QueuedUsbIo(AndroidUsbQueue(connection, intf, incoming, outgoing))
   override fun readFully(destination: ByteArray, offset: Int, length: Int) {
-    var done = 0
-    while (done < length) {
-      if (begin == end) {
-        end = connection.bulkTransfer(incoming, buffer, buffer.size, 5000)
-        begin = 0
-        if (end <= 0) throw EOFException("USB read timed out or disconnected; reconnect required")
-      }
-      val n = minOf(length - done, end - begin)
-      buffer.copyInto(destination, offset + done, begin, begin + n)
-      begin += n; done += n
-    }
+    io.readFully(destination, offset, length)
   }
   override fun writeFully(source: ByteArray) {
-    UsbWrites.send(source.size) { offset, length, timeout ->
-      connection.bulkTransfer(outgoing, source, offset, length, timeout)
-    }
+    io.writeFully(source, source.size)
   }
-  override fun close() { connection.releaseInterface(intf); connection.close() }
-}
-
-/** Bound individual requests and the whole reply; never retry ambiguous errors. */
-object UsbWrites {
-  fun send(size: Int, transfer: (Int, Int, Int) -> Int) {
-    val started = System.nanoTime()
-    val deadline = started + 1_000_000_000L
-    var offset = 0
-    while (offset < size) {
-      val remaining = deadline - System.nanoTime()
-      if (remaining <= 0) throw EOFException("USB reply deadline at $offset/$size bytes")
-      val length = minOf(16384, size - offset)
-      val timeout = ((remaining + 999999) / 1000000).toInt()
-      val n = transfer(offset, length, timeout)
-      if (n <= 0 || n > length) {
-        val elapsed = (System.nanoTime() - started) / 1_000_000
-        throw EOFException("USB write failed: result=$n offset=$offset/$size request=$length elapsed=${elapsed}ms; reconnect required")
-      }
-      offset += n
-    }
-  }
+  override fun writeFully(source: ByteArray, length: Int) { io.writeFully(source, length) }
+  override fun close() = io.close()
 }
 
 object Wire {
@@ -88,8 +56,8 @@ object Wire {
   const val VERSION = 2
   const val MAX_PAYLOAD = 4 * 1024 * 1024 + 8
   fun little(data: ByteArray): ByteBuffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN)
-  fun receive(link: Link): Message {
-    val header = ByteArray(32)
+  fun receive(link: Link, header: ByteArray = ByteArray(32), inferencePayload: ByteArray? = null,
+              paddingBuffer: ByteArray = ByteArray(16384)): Message {
     link.readFully(header, 0, 32)
     val h = little(header)
     require(h.int == MAGIC && h.short.toInt() == VERSION) { "Wrong JetLink magic/version" }
@@ -98,10 +66,10 @@ object Wire {
     val flags = h.int
     val length = h.int
     require(length in 0..MAX_PAYLOAD) { "Oversized or negative payload" }
-    val payload = ByteArray(length)
+    val payload = if (type == 8 && inferencePayload?.size == length) inferencePayload else ByteArray(length)
     link.readFully(payload, 0, length)
     val padding = if (link.receiveAlignment > 0) (-(32 + length)).mod(link.receiveAlignment) else if (flags and 128 != 0) 1 else 0
-    if (padding > 0) link.readFully(ByteArray(padding), 0, padding)
+    if (padding > 0) link.readFully(paddingBuffer, 0, padding)
     return Message(type, sequence, flags, payload)
   }
   fun send(link: Link, type: Int, sequence: Int, payload: ByteArray) {

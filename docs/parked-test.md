@@ -36,8 +36,10 @@ setting in cleanup. The normal transport limits resume after the initial USB
 handshake, and the frame phase is bounded by three minutes. If forcibly killed
 or power is lost, verify the enable setting before returning to the Jetson.
 
-After frame 120, the dashboard should retain **TEST COMPLETE**. The test closes
-its connection and restores the normal daemon. An idle/disconnect message after
+After frame 120, the dashboard should retain **TEST COMPLETE**. The result is
+saved immediately. The client sends keepalive pings for up to 60 seconds so you
+can view it; unplugging ends this hold early. Use `--hold-seconds 0` to skip the
+viewing period. The test then closes and restores the normal daemon. An idle/disconnect message after
 completion does not invalidate the saved result. The ordinary driving client is
 still refused by this experimental app; tapping Connect again does not start
 another isolated test.
@@ -48,6 +50,9 @@ permission retention must be verified on the exact Android build. This setup
 does not disable the OS security model or grant permission via root.
 
 Record the negotiated USB speed during each run:
+
+The client now saves `usb_link.current_speed` and the phone's `usb_io` label in
+the result automatically after the handshake. You can also inspect speed with:
 
 ```bash
 cat /sys/class/udc/*/current_speed

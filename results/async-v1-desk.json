@@ -1,0 +1,42 @@
+{
+  "date": "2026-09-27",
+  "candidate": "queued-v1",
+  "apk_sha256": "1594b11fffc233029a56be7d1b97be11621cda590a181748304ff5ad22520682",
+  "transport": "adb_tcp_desk_not_direct_usb",
+  "frames": 120,
+  "steady": {
+    "roundtrip_ms": {
+      "mean": 50.84087913020757,
+      "p95": 54.48453999997582,
+      "max": 56.24870001338422
+    },
+    "inference_ms": {
+      "mean": 31.540278260869567,
+      "p95": 33.809599999999996,
+      "max": 34.301
+    },
+    "queue_ms": {
+      "mean": 2.283426086956521,
+      "p95": 3.0719,
+      "max": 3.989
+    },
+    "server_ms": {
+      "mean": 34.01627826086957,
+      "p95": 36.6759,
+      "max": 37.146
+    }
+  },
+  "jvm_tests_passed": 15,
+  "queue_hashes_matched": 54,
+  "fixture_matches_previous_g6_exactly": true,
+  "recurrent_frames_matching_previous_g6": [
+    0,
+    119
+  ],
+  "ordinary_driving_refused": true,
+  "wrong_model_refused": true,
+  "duplicate_does_not_advance": true,
+  "malformed_frame_refused": true,
+  "direct_usb_candidate_verified": false,
+  "driving_ready": false
+}
