@@ -21,14 +21,14 @@ G5 and G6 compiled models are not interchangeable. Obtain the Tensor SDK through
 
 ## What works today
 
-- **Direct USB:** two 120-frame synthetic recurrent tests completed successfully.
+- **Direct USB:** three 120-frame synthetic recurrent tests completed successfully.
 - **Automatic app launch:** Android's saved USB default was verified. Cold-process launch and reboot behavior still need testing.
 - **Readable dashboard:** average, p95, frame count, and a written 50 ms budget status, with high-contrast colors.
 - **Correctness checks:** history queues, duplicate requests, model identity, and malformed requests are checked.
 
-The latest completed dashboard USB test averaged **56.8 ms**, with **64.2 ms p95**. It is over the 50 ms budget, even before camera processing and control integration.
+The latest completed dashboard USB test averaged **51.1 ms**, with **56.1 ms p95**. It is over the 50 ms budget, even before camera processing and control integration.
 
-The next candidate uses **asynchronous USB transfers and reusable buffers**. Desk checks passed; direct USB performance with the better cable is still pending. See [optimization details, checks, and rollback](docs/async-usb.md).
+The current app uses **asynchronous USB transfers and reusable buffers**. Its first direct USB test passed using the same cable: average improved from 56.8 to 51.1 ms. The connection negotiated USB 2 high-speed; a faster cable/adapter path remains to be tested. See [optimization details, checks, and rollback](docs/async-usb.md).
 
 ## Mount, plug in, and test
 

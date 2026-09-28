@@ -102,3 +102,19 @@ invalidate the result, but the complete plug-and-drive workflow is not ready:
 the normal client still cannot use this unqualified model. The current parked
 test must be launched separately. Summary:
 [`usb-g6-dashboard-120-frames.json`](../results/usb-g6-dashboard-120-frames.json).
+
+## Asynchronous USB test
+
+All 120 frames completed with queued-v1 and the high-contrast APK on 2026-09-27.
+The user confirmed the same cable was used. Excluding five warmup frames,
+exchange mean was 51.140 ms, p95 56.111 ms, maximum 65.108 ms. Compared with
+the previous dashboard run, mean improved by 5.705 ms (10.0%) and p95 by
+8.081 ms (12.6%). This is a single-run comparison, not a controlled repeated A/B.
+NPU mean was 31.230 ms and phone server work 33.555 ms.
+
+The controller recorded high-speed (USB 2), configured. This identifies the
+negotiated link speed, not which cable, adapter, port, or gadget setting limits it.
+Battery was 100%, 27.5 C, normal thermal state, with no USB or wireless charging.
+The test ended and JetlinkEnabled was restored to 1; IsOffroad remained 1.
+Both average and p95 remain above 50 ms before camera/control processing.
+[Sanitized report](../results/usb-g6-async-120-frames.json).

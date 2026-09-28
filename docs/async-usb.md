@@ -76,3 +76,10 @@ Final installed APK SHA256:
 Its only code difference from the desk-tested candidate is the dashboard styling.
 All 15 JVM tests also pass on this build; the 120-frame desk measurements above
 belong to the earlier APK, not a repeated measurement of the UI update.
+
+### First direct result
+
+The queued-v1 build subsequently passed all 120 direct USB frames on the same
+cable, as confirmed by the user. Mean exchange 51.140 ms, p95 56.111 ms;
+negotiated high-speed (USB 2). This supersedes the pending-test status above.
+See [measured results](results.md#asynchronous-usb-test). Driving remains unqualified.
