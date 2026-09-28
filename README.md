@@ -16,7 +16,9 @@ The Android app registers for the comma's JetLink USB device and can launch on
 attachment. On the first attachment, choose **JetLink Pixel Test** and Android's
 **Always use** option if shown. Android owns that one-time consent; the app does
 not bypass it. Subsequent matching attachments should launch the chosen default
-and grant access. This still needs an unplug/replug verification on the phone.
+and grant access. The default choice was verified saved after the dashboard's
+120-frame physical USB test. Cold-process launch and reboot behavior remain
+unverified.
 The manual Connect button remains a fallback and never opens repeated dialogs
 automatically.
 

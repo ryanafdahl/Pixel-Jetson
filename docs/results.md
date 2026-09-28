@@ -77,6 +77,28 @@ exchange times. It was installed and its USB handler registration verified.
 Nine JVM tests passed and another 30 recurrent desk frames passed (mean phone
 server work 33.542 ms). The dashboard was inspected on the phone.
 APK SHA256: `c045c123f8f19a5cdebdd95f3591d32aff8a927f2048ee20e244b6dd3970140c`.
-Remembered permission, cold USB auto-launch, and the new client-to-dashboard
-measurements still need a physical USB test. This later build is not the APK
-that produced the 120-frame direct timing table above.
+This later build is not the APK that produced the first direct timing table above.
+
+## Dashboard USB test
+
+A subsequent physical run with the dashboard APK passed all 120 frames. The
+phone log confirms the client measurements reached the UI: `TEST COMPLETE`,
+average 56.8 ms, p95 64.2 ms, `OVER 50 ms budget`, 115 measured frames after
+warmup. Exact mean exchange was 56.845 ms, p95 64.193 ms, maximum 78.578 ms;
+mean NPU inference 31.026 ms and phone server work 33.008 ms.
+
+Android's USB settings, read after returning the phone to the computer, retained
+JetLink Pixel Test as the default handler for the comma gadget. This verifies
+the saved choice. The app was placed on the home screen before the run but its
+process was not killed; cold-process launch, reboot behavior, and a completely
+unattended mount-to-model session remain separate checks.
+
+Battery telemetry showed 100%, 28.1–28.2 C, normal thermal state and neither USB
+nor wireless power. The run does not qualify wireless-mount charging.
+
+After completion, the normal daemon resumed and repeatedly contacted the
+parked-only app, which refused it. Those post-test reconnect messages do not
+invalidate the result, but the complete plug-and-drive workflow is not ready:
+the normal client still cannot use this unqualified model. The current parked
+test must be launched separately. Summary:
+[`usb-g6-dashboard-120-frames.json`](../results/usb-g6-dashboard-120-frames.json).

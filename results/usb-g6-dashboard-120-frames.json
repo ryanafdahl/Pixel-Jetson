@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-27",
+  "device": "Pixel 11 Pro XL / Tensor G6",
+  "transport": "direct_usb",
+  "passed_protocol": true,
+  "driving_ready": false,
+  "frames": 120,
+  "warmup_frames_excluded": 5,
+  "steady": {
+    "roundtrip_ms": {
+      "mean": 56.84474596460147,
+      "p95": 64.19263608986512,
+      "max": 78.57785501983017
+    },
+    "inference_ms": {
+      "mean": 31.02586956521739,
+      "p95": 33.266400000000004,
+      "max": 34.97
+    },
+    "queue_ms": {
+      "mean": 1.7726608695652175,
+      "p95": 2.5707,
+      "max": 3.027
+    },
+    "server_ms": {
+      "mean": 33.007791304347826,
+      "p95": 35.6904,
+      "max": 37.135
+    }
+  },
+  "tested_apk_sha256": "c045c123f8f19a5cdebdd95f3591d32aff8a927f2048ee20e244b6dd3970140c",
+  "dashboard_completion_confirmed_in_phone_log": true,
+  "android_default_handler_saved": true,
+  "cold_process_launch_verified": false,
+  "power": {
+    "battery_percent": 100,
+    "temperature_start_c": 28.1,
+    "temperature_end_c": 28.2,
+    "wireless_powered": false,
+    "usb_powered": false,
+    "thermal_status": 0
+  },
+  "limitations": "Synthetic inputs; no cameras, modeld, controls, or steering commands. Accuracy and driving latency remain unqualified."
+}
