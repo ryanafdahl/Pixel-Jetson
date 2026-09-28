@@ -1,0 +1,27 @@
+# Generated and licensed inputs stay local.
+.venv*/
+.gradle/
+**/build/
+**/__pycache__/
+*.pyc
+*.apk
+*.aab
+*.so
+*.aar
+*.zip
+*.tar.gz
+*.onnx
+*.tflite
+*.npy
+*.npz
+*.bin
+*.raw
+*.log
+model-tools/*.json
+model-tools/tensor-sdk/*.json
+model-tools/tensor-sdk/runtime/
+android/local.properties
+android/app/src/main/assets/model.json
+android/app/src/main/jniLibs/
+local-results/
+.idea/

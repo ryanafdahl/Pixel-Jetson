@@ -1,0 +1,1717 @@
+{
+  "date": "2026-09-27",
+  "device": "Pixel 11 Pro XL / Tensor G6",
+  "passed_protocol": true,
+  "driving_ready": false,
+  "transport": "direct_usb",
+  "fixture": "Synthetic black images with recurrent hidden-state feedback",
+  "warmup_frames_excluded": 5,
+  "steady": {
+    "roundtrip_ms": {
+      "mean": 55.5840623894018,
+      "p95": 63.56146907201037,
+      "max": 68.17315897205845
+    },
+    "inference_ms": {
+      "mean": 30.79427826086956,
+      "p95": 32.8066,
+      "max": 34.202
+    },
+    "queue_ms": {
+      "mean": 1.6457217391304348,
+      "p95": 2.4453,
+      "max": 2.64
+    },
+    "server_ms": {
+      "mean": 32.64452173913044,
+      "p95": 35.5469,
+      "max": 36.624
+    }
+  },
+  "source_model_sha256": "1791d5940b2c048d0639813426dd2cf1d6f2a6727ed51e17c8bcea8bbe754123",
+  "compiled_model_sha256": "c31ac45d4888ca06c344e9a2e0b31e9f7ea666befe5fe589504bf23e7fb61bc0",
+  "tested_apk_sha256": "bd201c8322580182d0fac6f7fbb2c424de63dcae11651b195061b43eb75237c8",
+  "limitations": "Synthetic inputs; no cameras, modeld, controls, or steering commands. Accuracy and driving latency remain unqualified.",
+  "frames": [
+    {
+      "frame": 0,
+      "roundtrip_ms": 69.49499802431092,
+      "inference_ms": 45.337,
+      "queue_ms": 1.986,
+      "server_ms": 47.371,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 1,
+      "roundtrip_ms": 48.09039400424808,
+      "inference_ms": 30.489,
+      "queue_ms": 0.455,
+      "server_ms": 30.979,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 2,
+      "roundtrip_ms": 48.276540997903794,
+      "inference_ms": 29.623,
+      "queue_ms": 0.397,
+      "server_ms": 30.049,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 3,
+      "roundtrip_ms": 49.09389198292047,
+      "inference_ms": 29.549,
+      "queue_ms": 0.683,
+      "server_ms": 30.291,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 4,
+      "roundtrip_ms": 50.033848034217954,
+      "inference_ms": 29.904,
+      "queue_ms": 0.732,
+      "server_ms": 30.74,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 5,
+      "roundtrip_ms": 55.36248499993235,
+      "inference_ms": 29.84,
+      "queue_ms": 0.722,
+      "server_ms": 30.62,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 6,
+      "roundtrip_ms": 49.44457195233554,
+      "inference_ms": 29.001,
+      "queue_ms": 0.646,
+      "server_ms": 29.716,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 7,
+      "roundtrip_ms": 51.0370850097388,
+      "inference_ms": 29.607,
+      "queue_ms": 0.88,
+      "server_ms": 30.566,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 8,
+      "roundtrip_ms": 47.766381001565605,
+      "inference_ms": 29.034,
+      "queue_ms": 0.737,
+      "server_ms": 29.848,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 9,
+      "roundtrip_ms": 47.95742395799607,
+      "inference_ms": 29.268,
+      "queue_ms": 0.751,
+      "server_ms": 30.104,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 10,
+      "roundtrip_ms": 49.884055042639375,
+      "inference_ms": 29.182,
+      "queue_ms": 0.714,
+      "server_ms": 29.98,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 11,
+      "roundtrip_ms": 48.350447963457555,
+      "inference_ms": 29.737,
+      "queue_ms": 0.828,
+      "server_ms": 30.674,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 12,
+      "roundtrip_ms": 51.006146997679025,
+      "inference_ms": 29.069,
+      "queue_ms": 1.283,
+      "server_ms": 30.505,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 13,
+      "roundtrip_ms": 50.332963990513235,
+      "inference_ms": 29.826,
+      "queue_ms": 1.245,
+      "server_ms": 31.236,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 14,
+      "roundtrip_ms": 54.39320602454245,
+      "inference_ms": 29.484,
+      "queue_ms": 0.697,
+      "server_ms": 30.351,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 15,
+      "roundtrip_ms": 56.58390105236322,
+      "inference_ms": 29.799,
+      "queue_ms": 1.245,
+      "server_ms": 31.228,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 16,
+      "roundtrip_ms": 50.86281301919371,
+      "inference_ms": 29.425,
+      "queue_ms": 1.471,
+      "server_ms": 31.058,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 17,
+      "roundtrip_ms": 49.52920798677951,
+      "inference_ms": 29.83,
+      "queue_ms": 1.509,
+      "server_ms": 31.591,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 18,
+      "roundtrip_ms": 49.572645977605134,
+      "inference_ms": 30.172,
+      "queue_ms": 0.537,
+      "server_ms": 30.959,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 19,
+      "roundtrip_ms": 49.45227998541668,
+      "inference_ms": 29.947,
+      "queue_ms": 0.527,
+      "server_ms": 30.725,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 20,
+      "roundtrip_ms": 51.66766297770664,
+      "inference_ms": 29.721,
+      "queue_ms": 1.325,
+      "server_ms": 31.27,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 21,
+      "roundtrip_ms": 50.09098298614845,
+      "inference_ms": 29.906,
+      "queue_ms": 0.816,
+      "server_ms": 30.977,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 22,
+      "roundtrip_ms": 52.40933503955603,
+      "inference_ms": 29.812,
+      "queue_ms": 1.889,
+      "server_ms": 31.953,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 23,
+      "roundtrip_ms": 48.23289503110573,
+      "inference_ms": 28.55,
+      "queue_ms": 0.425,
+      "server_ms": 29.017,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 24,
+      "roundtrip_ms": 54.811958980280906,
+      "inference_ms": 30.251,
+      "queue_ms": 1.835,
+      "server_ms": 32.336,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 25,
+      "roundtrip_ms": 55.1271170261316,
+      "inference_ms": 29.504,
+      "queue_ms": 1.214,
+      "server_ms": 30.902,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 26,
+      "roundtrip_ms": 52.47126304311678,
+      "inference_ms": 30.115,
+      "queue_ms": 1.384,
+      "server_ms": 31.686,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 27,
+      "roundtrip_ms": 52.30246001156047,
+      "inference_ms": 30.189,
+      "queue_ms": 1.496,
+      "server_ms": 31.936,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 28,
+      "roundtrip_ms": 52.86470300052315,
+      "inference_ms": 30.392,
+      "queue_ms": 1.853,
+      "server_ms": 32.684,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 29,
+      "roundtrip_ms": 53.08501800755039,
+      "inference_ms": 29.836,
+      "queue_ms": 1.846,
+      "server_ms": 31.929,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 30,
+      "roundtrip_ms": 55.71342498296872,
+      "inference_ms": 29.115,
+      "queue_ms": 0.594,
+      "server_ms": 30.016,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 31,
+      "roundtrip_ms": 52.27594799362123,
+      "inference_ms": 29.854,
+      "queue_ms": 1.853,
+      "server_ms": 31.96,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 32,
+      "roundtrip_ms": 52.4202209780924,
+      "inference_ms": 30.574,
+      "queue_ms": 2.603,
+      "server_ms": 33.425,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 33,
+      "roundtrip_ms": 55.885040026623756,
+      "inference_ms": 30.237,
+      "queue_ms": 1.947,
+      "server_ms": 32.43,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 34,
+      "roundtrip_ms": 47.61314997449517,
+      "inference_ms": 28.678,
+      "queue_ms": 0.635,
+      "server_ms": 29.352,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 35,
+      "roundtrip_ms": 48.95847296575084,
+      "inference_ms": 29.412,
+      "queue_ms": 1.888,
+      "server_ms": 31.337,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 36,
+      "roundtrip_ms": 56.36504403082654,
+      "inference_ms": 30.77,
+      "queue_ms": 1.851,
+      "server_ms": 32.871,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 37,
+      "roundtrip_ms": 51.699641975574195,
+      "inference_ms": 29.805,
+      "queue_ms": 1.989,
+      "server_ms": 32.051,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 38,
+      "roundtrip_ms": 49.95280399452895,
+      "inference_ms": 29.919,
+      "queue_ms": 1.822,
+      "server_ms": 31.988,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 39,
+      "roundtrip_ms": 52.65423300443217,
+      "inference_ms": 30.048,
+      "queue_ms": 1.819,
+      "server_ms": 32.125,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 40,
+      "roundtrip_ms": 55.17534603131935,
+      "inference_ms": 31.302,
+      "queue_ms": 1.872,
+      "server_ms": 33.345,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 41,
+      "roundtrip_ms": 52.01709200628102,
+      "inference_ms": 30.187,
+      "queue_ms": 1.877,
+      "server_ms": 32.312,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 42,
+      "roundtrip_ms": 52.38829302834347,
+      "inference_ms": 30.289,
+      "queue_ms": 1.75,
+      "server_ms": 32.287,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 43,
+      "roundtrip_ms": 54.64523797854781,
+      "inference_ms": 31.095,
+      "queue_ms": 1.712,
+      "server_ms": 33.055,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 44,
+      "roundtrip_ms": 52.594648965168744,
+      "inference_ms": 30.359,
+      "queue_ms": 1.695,
+      "server_ms": 32.156,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 45,
+      "roundtrip_ms": 52.86017101025209,
+      "inference_ms": 30.84,
+      "queue_ms": 1.84,
+      "server_ms": 32.932,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 46,
+      "roundtrip_ms": 53.835023019928485,
+      "inference_ms": 31.149,
+      "queue_ms": 1.769,
+      "server_ms": 33.175,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 47,
+      "roundtrip_ms": 51.83740198845044,
+      "inference_ms": 29.296,
+      "queue_ms": 1.884,
+      "server_ms": 31.254,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 48,
+      "roundtrip_ms": 49.57384301815182,
+      "inference_ms": 29.998,
+      "queue_ms": 0.836,
+      "server_ms": 30.879,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 49,
+      "roundtrip_ms": 61.0664879786782,
+      "inference_ms": 30.084,
+      "queue_ms": 1.358,
+      "server_ms": 31.528,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 50,
+      "roundtrip_ms": 52.78647301020101,
+      "inference_ms": 31.711,
+      "queue_ms": 0.862,
+      "server_ms": 32.732,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 51,
+      "roundtrip_ms": 55.734465015120804,
+      "inference_ms": 28.837,
+      "queue_ms": 1.313,
+      "server_ms": 30.192,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 52,
+      "roundtrip_ms": 46.7510589514859,
+      "inference_ms": 29.392,
+      "queue_ms": 0.606,
+      "server_ms": 30.035,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 53,
+      "roundtrip_ms": 47.560127975884825,
+      "inference_ms": 29.275,
+      "queue_ms": 0.531,
+      "server_ms": 29.846,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 54,
+      "roundtrip_ms": 50.925519957672805,
+      "inference_ms": 28.845,
+      "queue_ms": 0.545,
+      "server_ms": 29.428,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 55,
+      "roundtrip_ms": 54.559039999730885,
+      "inference_ms": 29.503,
+      "queue_ms": 1.901,
+      "server_ms": 31.661,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 56,
+      "roundtrip_ms": 52.44870996102691,
+      "inference_ms": 30.163,
+      "queue_ms": 1.853,
+      "server_ms": 32.268,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 57,
+      "roundtrip_ms": 51.473806030116975,
+      "inference_ms": 29.765,
+      "queue_ms": 1.869,
+      "server_ms": 31.884,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 58,
+      "roundtrip_ms": 54.689873999450356,
+      "inference_ms": 31.135,
+      "queue_ms": 1.807,
+      "server_ms": 33.19,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 59,
+      "roundtrip_ms": 54.23205700935796,
+      "inference_ms": 29.691,
+      "queue_ms": 1.833,
+      "server_ms": 31.771,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 60,
+      "roundtrip_ms": 52.44646896608174,
+      "inference_ms": 29.855,
+      "queue_ms": 1.906,
+      "server_ms": 31.803,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 61,
+      "roundtrip_ms": 54.05674298526719,
+      "inference_ms": 29.739,
+      "queue_ms": 1.804,
+      "server_ms": 31.797,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 62,
+      "roundtrip_ms": 50.81145599251613,
+      "inference_ms": 29.708,
+      "queue_ms": 1.805,
+      "server_ms": 31.557,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 63,
+      "roundtrip_ms": 51.526044961065054,
+      "inference_ms": 30.173,
+      "queue_ms": 1.418,
+      "server_ms": 31.839,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 64,
+      "roundtrip_ms": 56.913536973297596,
+      "inference_ms": 31.078,
+      "queue_ms": 1.781,
+      "server_ms": 33.11,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 65,
+      "roundtrip_ms": 55.36248302087188,
+      "inference_ms": 30.436,
+      "queue_ms": 0.704,
+      "server_ms": 31.389,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 66,
+      "roundtrip_ms": 51.74068204360083,
+      "inference_ms": 30.773,
+      "queue_ms": 0.594,
+      "server_ms": 31.618,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 67,
+      "roundtrip_ms": 48.516854003537446,
+      "inference_ms": 29.954,
+      "queue_ms": 0.563,
+      "server_ms": 30.657,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 68,
+      "roundtrip_ms": 62.05305800540373,
+      "inference_ms": 33.491,
+      "queue_ms": 2.446,
+      "server_ms": 36.064,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 69,
+      "roundtrip_ms": 54.284765967167914,
+      "inference_ms": 31.1,
+      "queue_ms": 1.333,
+      "server_ms": 32.59,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 70,
+      "roundtrip_ms": 58.483445027377456,
+      "inference_ms": 31.676,
+      "queue_ms": 1.714,
+      "server_ms": 33.579,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 71,
+      "roundtrip_ms": 56.91853701137006,
+      "inference_ms": 31.607,
+      "queue_ms": 2.037,
+      "server_ms": 33.84,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 72,
+      "roundtrip_ms": 60.067208018153906,
+      "inference_ms": 31.545,
+      "queue_ms": 1.965,
+      "server_ms": 33.762,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 73,
+      "roundtrip_ms": 57.76250298367813,
+      "inference_ms": 31.177,
+      "queue_ms": 1.761,
+      "server_ms": 33.119,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 74,
+      "roundtrip_ms": 56.85249500675127,
+      "inference_ms": 31.723,
+      "queue_ms": 1.885,
+      "server_ms": 33.792,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 75,
+      "roundtrip_ms": 56.16577103501186,
+      "inference_ms": 31.491,
+      "queue_ms": 1.853,
+      "server_ms": 33.596,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 76,
+      "roundtrip_ms": 61.76185701042414,
+      "inference_ms": 33.804,
+      "queue_ms": 2.28,
+      "server_ms": 36.357,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 77,
+      "roundtrip_ms": 68.17315897205845,
+      "inference_ms": 32.716,
+      "queue_ms": 2.408,
+      "server_ms": 35.375,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 78,
+      "roundtrip_ms": 60.06423901999369,
+      "inference_ms": 31.025,
+      "queue_ms": 2.099,
+      "server_ms": 33.286,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 79,
+      "roundtrip_ms": 58.79047798225656,
+      "inference_ms": 32.118,
+      "queue_ms": 1.678,
+      "server_ms": 33.983,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 80,
+      "roundtrip_ms": 58.796936995349824,
+      "inference_ms": 29.599,
+      "queue_ms": 1.403,
+      "server_ms": 31.191,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 81,
+      "roundtrip_ms": 56.83290999149904,
+      "inference_ms": 31.504,
+      "queue_ms": 1.711,
+      "server_ms": 33.398,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 82,
+      "roundtrip_ms": 62.420403002761304,
+      "inference_ms": 32.14,
+      "queue_ms": 2.059,
+      "server_ms": 34.445,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 83,
+      "roundtrip_ms": 60.14580198097974,
+      "inference_ms": 32.467,
+      "queue_ms": 2.153,
+      "server_ms": 34.876,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 84,
+      "roundtrip_ms": 61.414354015141726,
+      "inference_ms": 33.838,
+      "queue_ms": 1.786,
+      "server_ms": 35.808,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 85,
+      "roundtrip_ms": 64.19265799922869,
+      "inference_ms": 32.474,
+      "queue_ms": 1.8,
+      "server_ms": 34.533,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 86,
+      "roundtrip_ms": 57.87786701694131,
+      "inference_ms": 32.289,
+      "queue_ms": 1.821,
+      "server_ms": 34.363,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 87,
+      "roundtrip_ms": 61.63195997942239,
+      "inference_ms": 33.731,
+      "queue_ms": 2.265,
+      "server_ms": 36.269,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 88,
+      "roundtrip_ms": 60.11887500062585,
+      "inference_ms": 32.46,
+      "queue_ms": 1.84,
+      "server_ms": 34.465,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 89,
+      "roundtrip_ms": 57.47682199580595,
+      "inference_ms": 32.024,
+      "queue_ms": 2.052,
+      "server_ms": 34.26,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 90,
+      "roundtrip_ms": 59.66272496152669,
+      "inference_ms": 32.111,
+      "queue_ms": 1.794,
+      "server_ms": 34.153,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 91,
+      "roundtrip_ms": 53.86923998594284,
+      "inference_ms": 30.768,
+      "queue_ms": 1.768,
+      "server_ms": 32.721,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 92,
+      "roundtrip_ms": 56.64733599405736,
+      "inference_ms": 32.551,
+      "queue_ms": 1.791,
+      "server_ms": 34.603,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 93,
+      "roundtrip_ms": 60.6092429952696,
+      "inference_ms": 34.202,
+      "queue_ms": 2.172,
+      "server_ms": 36.624,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 94,
+      "roundtrip_ms": 59.567776042968035,
+      "inference_ms": 32.443,
+      "queue_ms": 1.981,
+      "server_ms": 34.776,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 95,
+      "roundtrip_ms": 59.24167903140187,
+      "inference_ms": 32.047,
+      "queue_ms": 2.01,
+      "server_ms": 34.382,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 96,
+      "roundtrip_ms": 64.46838798001409,
+      "inference_ms": 32.482,
+      "queue_ms": 2.356,
+      "server_ms": 35.088,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 97,
+      "roundtrip_ms": 61.83180399239063,
+      "inference_ms": 32.682,
+      "queue_ms": 2.506,
+      "server_ms": 35.435,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 98,
+      "roundtrip_ms": 64.67620300827548,
+      "inference_ms": 30.798,
+      "queue_ms": 1.765,
+      "server_ms": 32.649,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 99,
+      "roundtrip_ms": 58.54427797021344,
+      "inference_ms": 32.164,
+      "queue_ms": 2.346,
+      "server_ms": 34.801,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 100,
+      "roundtrip_ms": 63.349420961458236,
+      "inference_ms": 29.812,
+      "queue_ms": 1.789,
+      "server_ms": 31.913,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 101,
+      "roundtrip_ms": 59.87574701430276,
+      "inference_ms": 30.871,
+      "queue_ms": 2.195,
+      "server_ms": 33.326,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 102,
+      "roundtrip_ms": 58.57912194915116,
+      "inference_ms": 29.461,
+      "queue_ms": 1.27,
+      "server_ms": 30.886,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 103,
+      "roundtrip_ms": 56.4951459527947,
+      "inference_ms": 30.882,
+      "queue_ms": 1.496,
+      "server_ms": 32.564,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 104,
+      "roundtrip_ms": 54.05851197429001,
+      "inference_ms": 29.589,
+      "queue_ms": 1.567,
+      "server_ms": 31.406,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 105,
+      "roundtrip_ms": 56.86608701944351,
+      "inference_ms": 31.564,
+      "queue_ms": 2.58,
+      "server_ms": 34.478,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 106,
+      "roundtrip_ms": 57.48874798882753,
+      "inference_ms": 31.207,
+      "queue_ms": 2.383,
+      "server_ms": 33.84,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 107,
+      "roundtrip_ms": 61.47471797885373,
+      "inference_ms": 33.018,
+      "queue_ms": 2.556,
+      "server_ms": 35.824,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 108,
+      "roundtrip_ms": 61.09247502172366,
+      "inference_ms": 31.458,
+      "queue_ms": 2.361,
+      "server_ms": 34.137,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 109,
+      "roundtrip_ms": 59.603400994092226,
+      "inference_ms": 32.246,
+      "queue_ms": 2.64,
+      "server_ms": 35.17,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 110,
+      "roundtrip_ms": 59.65694203041494,
+      "inference_ms": 31.526,
+      "queue_ms": 2.334,
+      "server_ms": 34.122,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 111,
+      "roundtrip_ms": 56.13602802623063,
+      "inference_ms": 31.877,
+      "queue_ms": 1.662,
+      "server_ms": 33.725,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 112,
+      "roundtrip_ms": 61.807897000107914,
+      "inference_ms": 32.338,
+      "queue_ms": 1.785,
+      "server_ms": 34.371,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 113,
+      "roundtrip_ms": 62.827644986100495,
+      "inference_ms": 31.759,
+      "queue_ms": 2.347,
+      "server_ms": 34.353,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 114,
+      "roundtrip_ms": 60.525699984282255,
+      "inference_ms": 32.38,
+      "queue_ms": 2.307,
+      "server_ms": 34.966,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 115,
+      "roundtrip_ms": 67.8062789957039,
+      "inference_ms": 31.116,
+      "queue_ms": 2.445,
+      "server_ms": 33.877,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 116,
+      "roundtrip_ms": 56.765096029266715,
+      "inference_ms": 31.72,
+      "queue_ms": 1.697,
+      "server_ms": 33.598,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 117,
+      "roundtrip_ms": 58.73026797780767,
+      "inference_ms": 32.405,
+      "queue_ms": 1.994,
+      "server_ms": 34.665,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 118,
+      "roundtrip_ms": 56.90098204649985,
+      "inference_ms": 31.66,
+      "queue_ms": 1.762,
+      "server_ms": 33.608,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    },
+    {
+      "frame": 119,
+      "roundtrip_ms": 64.05624799663201,
+      "inference_ms": 31.665,
+      "queue_ms": 2.086,
+      "server_ms": 34.002,
+      "power": {
+        "battery_percent": 100,
+        "battery_temperature_c": 30,
+        "wireless_powered": false,
+        "usb_powered": false,
+        "thermal_status": 0
+      }
+    }
+  ]
+}
