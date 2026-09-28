@@ -118,3 +118,13 @@ Battery was 100%, 27.5 C, normal thermal state, with no USB or wireless charging
 The test ended and JetlinkEnabled was restored to 1; IsOffroad remained 1.
 Both average and p95 remain above 50 ms before camera/control processing.
 [Sanitized report](../results/usb-g6-async-120-frames.json).
+
+
+## Two-hour optimized phone desk test
+
+The newer direct-history-v3 build completed 144,798 recurrent frames over two
+hours through ADB/TCP: mean exchange 49.627 ms, p95 53.018 ms, maximum 160.057 ms.
+Mean phone work was 32.761 ms. Sampled battery temperature peaked at 39.6 C and
+thermal status reached Light. Rare phone-side stalls remain; this does not
+replace a direct USB or in-car thermal test. See [full analysis](phone-optimization.md#two-hour-desk-soak-completed)
+and [sanitized results](../results/phone-two-hour-soak.json).

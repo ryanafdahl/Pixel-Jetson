@@ -30,7 +30,7 @@ The latest completed dashboard USB test averaged **51.1 ms**, with **56.1 ms p95
 
 The current app uses **asynchronous USB transfers and reusable buffers**. Its first direct USB test passed using the same cable: average improved from 56.8 to 51.1 ms. The connection negotiated USB 2 high-speed; a faster cable/adapter path remains to be tested. See [optimization details, checks, and rollback](docs/async-usb.md).
 
-A newer [phone-side optimization candidate](docs/phone-optimization.md) removes duplicate image/feature copies, uses direct reply buffers, and adds phase timings. Its desk checks pass; direct USB and sustained results are tracked separately.
+A newer [phone-side optimization candidate](docs/phone-optimization.md) removes duplicate image/feature copies, uses direct reply buffers, and adds phase timings. It completed a two-hour desk run of **144,798 frames**: **49.6 ms average / 53.0 ms p95**, with rare stalls. Direct USB timing for this candidate is still pending; the desk result is not a budget or driving qualification.
 
 ## Mount, plug in, and test
 

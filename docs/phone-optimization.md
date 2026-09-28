@@ -122,5 +122,45 @@ matched exactly across modes. All sampled thermal states were Normal.
 
 Keep burst as the established default. High performance did not establish an
 exchange improvement; sustained was substantially slower. Runs were sequential,
-not temperature-matched randomized trials. A two-hour burst soak is a separate
-pending test. [Sanitized mode results](../results/phone-performance-modes.json).
+not temperature-matched randomized trials. The two-hour burst soak is complete; see below. [Sanitized mode results](../results/phone-performance-modes.json).
+
+
+## Two-hour desk soak completed
+
+The exact final installed APK completed **144,798 recurrent frames in 7,200.016
+seconds**, stopping at the requested duration. Every response passed the finite
+output/shape checks. Model mismatch, ordinary driving rejection, duplicate replay,
+and malformed-frame checks passed. This used ADB/TCP through the computer, not
+Android USB host requests to the comma.
+
+| Measurement, excluding five warmup frames | Mean | p95 | Maximum |
+| --- | ---: | ---: | ---: |
+| Desk request/reply | 49.627 ms | 53.018 ms | 160.057 ms |
+| Phone work | 32.761 ms | 34.781 ms | 131.923 ms |
+| History preparation | 0.293 ms | 0.453 ms | 6.626 ms |
+
+NPU invocation wall time averaged 29.984 ms, with a 129.590 ms maximum. Input
+writes averaged 1.742 ms and output reads 0.452 ms. The first and final complete
+1,000-frame checkpoints averaged 49.345 and 49.604 ms exchange respectively.
+
+Sampled battery temperature rose from 31.4 C to a peak of 39.6 C, finishing at
+39.5 C. Android reported Normal and Light thermal states; the thermal guard did
+not trigger. Samples showed USB power and no wireless charging. This does not
+qualify a wireless mount, a closed car, or sunlight exposure.
+
+The mean below 50 ms is **not a budget pass**: 56,998 of 144,793 measured exchanges
+(39.37%) exceeded 50 ms, and 11 exceeded 100 ms. Three measured phone-work times
+exceeded 50 ms; two exceeded 100 ms (frames 43,287 and 71,317). The largest exchange
+was frame 55,192 at 160.057 ms while phone work was 30.874 ms, so its delay was
+outside the measured phone-work interval. NPU invocation timings include wall-clock
+scheduling delays; the available evidence cannot distinguish device execution,
+OS scheduling, or other causes of the rare invocation spikes. No speculative
+priority, clock, or precision change was made in response.
+
+After completion, the phone answered a fresh parked-only HELLO in burst mode,
+its saved USB app default remained present, and temporary ADB forwarding was
+removed. It had cooled to 25.2 C with Normal thermal status. The next step is the
+same-cable parked physical USB test with stage profiling; the connection window
+has not been armed. Keep the previous direct-tested APK for rollback.
+
+[Sanitized sustained results and checkpoints](../results/phone-two-hour-soak.json).

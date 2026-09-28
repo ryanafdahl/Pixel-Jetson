@@ -1,0 +1,1323 @@
+{
+  "date_local": "2026-09-27",
+  "transport": "adb_tcp_desk_not_direct_usb",
+  "candidate": "direct-history-v3",
+  "performance_mode": 5,
+  "apk_sha256": "17dc73316c82110d14f937b58957420bf1c4ca47b094cd69100639118cf9ec97",
+  "frames": 144798,
+  "elapsed_seconds": 7200.016000000003,
+  "stop_reason": "duration_reached",
+  "warmup_frames_excluded": 5,
+  "driving_ready": false,
+  "steady": {
+    "roundtrip_ms": {
+      "mean": 49.627479512808705,
+      "p95": 53.01767998607829,
+      "max": 160.05690000019968
+    },
+    "inference_ms": {
+      "mean": 32.194761770251326,
+      "p95": 34.169,
+      "max": 131.51
+    },
+    "queue_ms": {
+      "mean": 0.29293812546186626,
+      "p95": 0.453,
+      "max": 6.626
+    },
+    "server_ms": {
+      "mean": 32.76081397581375,
+      "p95": 34.781,
+      "max": 131.923
+    }
+  },
+  "phone_profile": {
+    "samples": 144793,
+    "receive_with_client_wait": {
+      "mean_ms": 16.015847361902857,
+      "max_ms": 128.77617
+    },
+    "history": {
+      "mean_ms": 0.29293812546186626,
+      "max_ms": 6.626
+    },
+    "input_write": {
+      "mean_ms": 1.7417835458551172,
+      "max_ms": 16.50487
+    },
+    "npu_invoke": {
+      "mean_ms": 29.983514949686796,
+      "max_ms": 129.589921
+    },
+    "output_read": {
+      "mean_ms": 0.4517878897667705,
+      "max_ms": 8.83178
+    },
+    "validation": {
+      "mean_ms": 0.27361324737383713,
+      "max_ms": 23.880401
+    },
+    "telemetry": {
+      "mean_ms": 0.013900090701898573,
+      "max_ms": 3.618386
+    },
+    "reply_pack": {
+      "mean_ms": 0.06899170374949065,
+      "max_ms": 6.740079
+    },
+    "reply_send": {
+      "mean_ms": 0.6570197002824721,
+      "max_ms": 10.645989
+    }
+  },
+  "exchange_over_50_ms": 56998,
+  "exchange_over_50_percent": 39.36516268051633,
+  "exchange_over_100_ms": 11,
+  "phone_work_over_50_ms": 3,
+  "phone_work_over_100_ms": 2,
+  "power": {
+    "battery_temperature_min_c": 31.4,
+    "battery_temperature_max_c": 39.6,
+    "battery_temperature_final_c": 39.5,
+    "sampled_thermal_statuses": [
+      0,
+      1
+    ],
+    "all_samples_usb_powered": true,
+    "any_sample_wireless_powered": false
+  },
+  "protocol_checks": {
+    "ordinary_driving_refused": true,
+    "wrong_model_refused": true,
+    "duplicate_does_not_advance": true,
+    "malformed_frame_refused": true
+  },
+  "largest_phone_work_frames": [
+    {
+      "frame": 71317,
+      "roundtrip_ms": 150.8711000205949,
+      "inference_ms": 131.51,
+      "queue_ms": 0.315,
+      "server_ms": 131.923
+    },
+    {
+      "frame": 43287,
+      "roundtrip_ms": 139.82799998484552,
+      "inference_ms": 109.228,
+      "queue_ms": 0.327,
+      "server_ms": 109.809
+    },
+    {
+      "frame": 71217,
+      "roundtrip_ms": 89.32550001190975,
+      "inference_ms": 32.207,
+      "queue_ms": 0.301,
+      "server_ms": 56.388
+    },
+    {
+      "frame": 64614,
+      "roundtrip_ms": 68.84910000371747,
+      "inference_ms": 47.282,
+      "queue_ms": 0.328,
+      "server_ms": 47.663
+    },
+    {
+      "frame": 134347,
+      "roundtrip_ms": 73.78720000269823,
+      "inference_ms": 46.146,
+      "queue_ms": 0.343,
+      "server_ms": 46.742
+    }
+  ],
+  "largest_exchange_frames": [
+    {
+      "frame": 55192,
+      "roundtrip_ms": 160.05690000019968,
+      "inference_ms": 30.392,
+      "queue_ms": 0.228,
+      "server_ms": 30.874
+    },
+    {
+      "frame": 71317,
+      "roundtrip_ms": 150.8711000205949,
+      "inference_ms": 131.51,
+      "queue_ms": 0.315,
+      "server_ms": 131.923
+    },
+    {
+      "frame": 43287,
+      "roundtrip_ms": 139.82799998484552,
+      "inference_ms": 109.228,
+      "queue_ms": 0.327,
+      "server_ms": 109.809
+    },
+    {
+      "frame": 125321,
+      "roundtrip_ms": 122.56370001705363,
+      "inference_ms": 35.067,
+      "queue_ms": 0.122,
+      "server_ms": 35.334
+    },
+    {
+      "frame": 64215,
+      "roundtrip_ms": 115.78530000406317,
+      "inference_ms": 31.752,
+      "queue_ms": 0.219,
+      "server_ms": 32.224
+    }
+  ],
+  "checkpoints": [
+    {
+      "frames": 1000,
+      "elapsed_seconds": 49.5,
+      "exchange_mean_ms": 49.34476190019632,
+      "exchange_p95_ms": 52.82618502387777,
+      "battery_temperature_c": 31.4,
+      "thermal_status": 0
+    },
+    {
+      "frames": 2000,
+      "elapsed_seconds": 98.79699999999139,
+      "exchange_mean_ms": 49.18439449983998,
+      "exchange_p95_ms": 52.35710997803835,
+      "battery_temperature_c": 32.3,
+      "thermal_status": 0
+    },
+    {
+      "frames": 3000,
+      "elapsed_seconds": 148.32800000000861,
+      "exchange_mean_ms": 49.45465479977429,
+      "exchange_p95_ms": 52.756899991072714,
+      "battery_temperature_c": 32.3,
+      "thermal_status": 0
+    },
+    {
+      "frames": 4000,
+      "elapsed_seconds": 197.60899999999674,
+      "exchange_mean_ms": 49.1862002996495,
+      "exchange_p95_ms": 52.50868498987984,
+      "battery_temperature_c": 33.1,
+      "thermal_status": 0
+    },
+    {
+      "frames": 5000,
+      "elapsed_seconds": 246.98399999999674,
+      "exchange_mean_ms": 49.286038799153175,
+      "exchange_p95_ms": 52.69772499159444,
+      "battery_temperature_c": 33.1,
+      "thermal_status": 0
+    },
+    {
+      "frames": 6000,
+      "elapsed_seconds": 296.25,
+      "exchange_mean_ms": 49.1747335997934,
+      "exchange_p95_ms": 52.13444498658646,
+      "battery_temperature_c": 33.7,
+      "thermal_status": 0
+    },
+    {
+      "frames": 7000,
+      "elapsed_seconds": 345.56200000000536,
+      "exchange_mean_ms": 49.130114699946716,
+      "exchange_p95_ms": 52.11920500150882,
+      "battery_temperature_c": 33.7,
+      "thermal_status": 0
+    },
+    {
+      "frames": 8000,
+      "elapsed_seconds": 394.90600000001723,
+      "exchange_mean_ms": 49.16545040020719,
+      "exchange_p95_ms": 53.02050500467885,
+      "battery_temperature_c": 33.7,
+      "thermal_status": 0
+    },
+    {
+      "frames": 9000,
+      "elapsed_seconds": 444.1719999999914,
+      "exchange_mean_ms": 49.1294119002996,
+      "exchange_p95_ms": 52.70095999730984,
+      "battery_temperature_c": 33.7,
+      "thermal_status": 0
+    },
+    {
+      "frames": 10000,
+      "elapsed_seconds": 493.64100000000326,
+      "exchange_mean_ms": 49.370426300156396,
+      "exchange_p95_ms": 52.63032999064308,
+      "battery_temperature_c": 34.4,
+      "thermal_status": 0
+    },
+    {
+      "frames": 11000,
+      "elapsed_seconds": 543.0780000000086,
+      "exchange_mean_ms": 49.355897699919296,
+      "exchange_p95_ms": 52.48869500501314,
+      "battery_temperature_c": 34.8,
+      "thermal_status": 0
+    },
+    {
+      "frames": 12000,
+      "elapsed_seconds": 592.4690000000119,
+      "exchange_mean_ms": 49.304210599832004,
+      "exchange_p95_ms": 53.07991500158096,
+      "battery_temperature_c": 35,
+      "thermal_status": 0
+    },
+    {
+      "frames": 13000,
+      "elapsed_seconds": 641.9219999999914,
+      "exchange_mean_ms": 49.35288539988687,
+      "exchange_p95_ms": 52.825734989892226,
+      "battery_temperature_c": 35.2,
+      "thermal_status": 0
+    },
+    {
+      "frames": 14000,
+      "elapsed_seconds": 691.1560000000172,
+      "exchange_mean_ms": 49.1495584998047,
+      "exchange_p95_ms": 52.63609000830911,
+      "battery_temperature_c": 35.2,
+      "thermal_status": 0
+    },
+    {
+      "frames": 15000,
+      "elapsed_seconds": 740.5469999999914,
+      "exchange_mean_ms": 49.30333740077913,
+      "exchange_p95_ms": 52.538365009240806,
+      "battery_temperature_c": 35.4,
+      "thermal_status": 0
+    },
+    {
+      "frames": 16000,
+      "elapsed_seconds": 789.75,
+      "exchange_mean_ms": 49.12117959980969,
+      "exchange_p95_ms": 52.36755500227446,
+      "battery_temperature_c": 35.6,
+      "thermal_status": 0
+    },
+    {
+      "frames": 17000,
+      "elapsed_seconds": 839.25,
+      "exchange_mean_ms": 49.39523869927507,
+      "exchange_p95_ms": 53.49097499420168,
+      "battery_temperature_c": 35.9,
+      "thermal_status": 1
+    },
+    {
+      "frames": 18000,
+      "elapsed_seconds": 888.5940000000119,
+      "exchange_mean_ms": 49.24064150030608,
+      "exchange_p95_ms": 53.17070998280542,
+      "battery_temperature_c": 36.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 19000,
+      "elapsed_seconds": 938.25,
+      "exchange_mean_ms": 49.56410440040054,
+      "exchange_p95_ms": 53.12398000824032,
+      "battery_temperature_c": 36.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 20000,
+      "elapsed_seconds": 988.2030000000086,
+      "exchange_mean_ms": 49.856591200252296,
+      "exchange_p95_ms": 52.79736000520643,
+      "battery_temperature_c": 36.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 21000,
+      "elapsed_seconds": 1037.875,
+      "exchange_mean_ms": 49.58760929995333,
+      "exchange_p95_ms": 53.263064997736365,
+      "battery_temperature_c": 36.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 22000,
+      "elapsed_seconds": 1087.8120000000054,
+      "exchange_mean_ms": 49.84402679980849,
+      "exchange_p95_ms": 53.02679500891827,
+      "battery_temperature_c": 36.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 23000,
+      "elapsed_seconds": 1137.5780000000086,
+      "exchange_mean_ms": 49.67873740004143,
+      "exchange_p95_ms": 53.02291500411229,
+      "battery_temperature_c": 37,
+      "thermal_status": 1
+    },
+    {
+      "frames": 24000,
+      "elapsed_seconds": 1187.3440000000119,
+      "exchange_mean_ms": 49.662208599969745,
+      "exchange_p95_ms": 52.65186999895377,
+      "battery_temperature_c": 36.8,
+      "thermal_status": 1
+    },
+    {
+      "frames": 25000,
+      "elapsed_seconds": 1237.3120000000054,
+      "exchange_mean_ms": 49.87903819960775,
+      "exchange_p95_ms": 53.27663499483605,
+      "battery_temperature_c": 37.2,
+      "thermal_status": 1
+    },
+    {
+      "frames": 26000,
+      "elapsed_seconds": 1287.1089999999967,
+      "exchange_mean_ms": 49.702128900797106,
+      "exchange_p95_ms": 53.13296000676928,
+      "battery_temperature_c": 37.2,
+      "thermal_status": 1
+    },
+    {
+      "frames": 27000,
+      "elapsed_seconds": 1336.9530000000086,
+      "exchange_mean_ms": 49.753899299772456,
+      "exchange_p95_ms": 52.958230012154665,
+      "battery_temperature_c": 37,
+      "thermal_status": 1
+    },
+    {
+      "frames": 28000,
+      "elapsed_seconds": 1386.9690000000119,
+      "exchange_mean_ms": 49.92729230050463,
+      "exchange_p95_ms": 53.2483399802004,
+      "battery_temperature_c": 37.5,
+      "thermal_status": 1
+    },
+    {
+      "frames": 29000,
+      "elapsed_seconds": 1436.8589999999967,
+      "exchange_mean_ms": 49.79829899940523,
+      "exchange_p95_ms": 53.50717500405153,
+      "battery_temperature_c": 37.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 30000,
+      "elapsed_seconds": 1486.5780000000086,
+      "exchange_mean_ms": 49.61732449976262,
+      "exchange_p95_ms": 52.78866000007838,
+      "battery_temperature_c": 37.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 31000,
+      "elapsed_seconds": 1536.125,
+      "exchange_mean_ms": 49.46402340003988,
+      "exchange_p95_ms": 52.4967150107841,
+      "battery_temperature_c": 37.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 32000,
+      "elapsed_seconds": 1585.8589999999967,
+      "exchange_mean_ms": 49.63389419997111,
+      "exchange_p95_ms": 53.23928001744206,
+      "battery_temperature_c": 37.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 33000,
+      "elapsed_seconds": 1635.4839999999967,
+      "exchange_mean_ms": 49.51861649975763,
+      "exchange_p95_ms": 52.73586000112118,
+      "battery_temperature_c": 37.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 34000,
+      "elapsed_seconds": 1685.2660000000033,
+      "exchange_mean_ms": 49.685991499893134,
+      "exchange_p95_ms": 52.54306999559048,
+      "battery_temperature_c": 37.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 35000,
+      "elapsed_seconds": 1734.6719999999914,
+      "exchange_mean_ms": 49.316963600489544,
+      "exchange_p95_ms": 53.23906998237362,
+      "battery_temperature_c": 37.7,
+      "thermal_status": 1
+    },
+    {
+      "frames": 36000,
+      "elapsed_seconds": 1784.2339999999967,
+      "exchange_mean_ms": 49.4648393993848,
+      "exchange_p95_ms": 52.83011498686392,
+      "battery_temperature_c": 38.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 37000,
+      "elapsed_seconds": 1834.1560000000172,
+      "exchange_mean_ms": 49.82358269963879,
+      "exchange_p95_ms": 53.46356999070849,
+      "battery_temperature_c": 38.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 38000,
+      "elapsed_seconds": 1883.8440000000119,
+      "exchange_mean_ms": 49.593885699432576,
+      "exchange_p95_ms": 53.051724983379245,
+      "battery_temperature_c": 38.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 39000,
+      "elapsed_seconds": 1933.6089999999967,
+      "exchange_mean_ms": 49.682946399901994,
+      "exchange_p95_ms": 53.146349983580876,
+      "battery_temperature_c": 38.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 40000,
+      "elapsed_seconds": 1983.375,
+      "exchange_mean_ms": 49.664787500107195,
+      "exchange_p95_ms": 52.983000010135584,
+      "battery_temperature_c": 38,
+      "thermal_status": 1
+    },
+    {
+      "frames": 41000,
+      "elapsed_seconds": 2033.2969999999914,
+      "exchange_mean_ms": 49.82165919954423,
+      "exchange_p95_ms": 53.06205501256045,
+      "battery_temperature_c": 38,
+      "thermal_status": 1
+    },
+    {
+      "frames": 42000,
+      "elapsed_seconds": 2083.0469999999914,
+      "exchange_mean_ms": 49.66321110003628,
+      "exchange_p95_ms": 52.71391500864411,
+      "battery_temperature_c": 38.5,
+      "thermal_status": 1
+    },
+    {
+      "frames": 43000,
+      "elapsed_seconds": 2132.8120000000054,
+      "exchange_mean_ms": 49.67357060042559,
+      "exchange_p95_ms": 53.154929996526334,
+      "battery_temperature_c": 38.5,
+      "thermal_status": 1
+    },
+    {
+      "frames": 44000,
+      "elapsed_seconds": 2182.844000000012,
+      "exchange_mean_ms": 49.9255043999874,
+      "exchange_p95_ms": 53.51854000182357,
+      "battery_temperature_c": 38.5,
+      "thermal_status": 1
+    },
+    {
+      "frames": 45000,
+      "elapsed_seconds": 2232.719000000012,
+      "exchange_mean_ms": 49.79276899967226,
+      "exchange_p95_ms": 53.26285000046482,
+      "battery_temperature_c": 38.5,
+      "thermal_status": 1
+    },
+    {
+      "frames": 46000,
+      "elapsed_seconds": 2282.6410000000033,
+      "exchange_mean_ms": 49.82396110027912,
+      "exchange_p95_ms": 53.178365019266494,
+      "battery_temperature_c": 38.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 47000,
+      "elapsed_seconds": 2332.5469999999914,
+      "exchange_mean_ms": 49.807699999946635,
+      "exchange_p95_ms": 53.647000015189406,
+      "battery_temperature_c": 38.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 48000,
+      "elapsed_seconds": 2382.3589999999967,
+      "exchange_mean_ms": 49.71401940021315,
+      "exchange_p95_ms": 53.1760099780513,
+      "battery_temperature_c": 38.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 49000,
+      "elapsed_seconds": 2432.3280000000086,
+      "exchange_mean_ms": 49.87395979935536,
+      "exchange_p95_ms": 53.098719991976395,
+      "battery_temperature_c": 38.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 50000,
+      "elapsed_seconds": 2482.094000000012,
+      "exchange_mean_ms": 49.68257580001955,
+      "exchange_p95_ms": 52.9506250139093,
+      "battery_temperature_c": 38.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 51000,
+      "elapsed_seconds": 2532.0469999999914,
+      "exchange_mean_ms": 49.853842700162204,
+      "exchange_p95_ms": 53.121640006429516,
+      "battery_temperature_c": 38.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 52000,
+      "elapsed_seconds": 2581.8589999999967,
+      "exchange_mean_ms": 49.72475560038583,
+      "exchange_p95_ms": 52.934509979968425,
+      "battery_temperature_c": 38.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 53000,
+      "elapsed_seconds": 2631.6560000000172,
+      "exchange_mean_ms": 49.701667699962854,
+      "exchange_p95_ms": 53.04241499834461,
+      "battery_temperature_c": 38.8,
+      "thermal_status": 1
+    },
+    {
+      "frames": 54000,
+      "elapsed_seconds": 2681.219000000012,
+      "exchange_mean_ms": 49.45754520007176,
+      "exchange_p95_ms": 52.82884999032831,
+      "battery_temperature_c": 38.8,
+      "thermal_status": 1
+    },
+    {
+      "frames": 55000,
+      "elapsed_seconds": 2730.8589999999967,
+      "exchange_mean_ms": 49.554963700211374,
+      "exchange_p95_ms": 52.40265497704968,
+      "battery_temperature_c": 38.8,
+      "thermal_status": 1
+    },
+    {
+      "frames": 56000,
+      "elapsed_seconds": 2781.0,
+      "exchange_mean_ms": 50.044289000623394,
+      "exchange_p95_ms": 53.69370499247452,
+      "battery_temperature_c": 38.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 57000,
+      "elapsed_seconds": 2830.8589999999967,
+      "exchange_mean_ms": 49.76273070008028,
+      "exchange_p95_ms": 52.93810000875965,
+      "battery_temperature_c": 38.9,
+      "thermal_status": 1
+    },
+    {
+      "frames": 58000,
+      "elapsed_seconds": 2880.5469999999914,
+      "exchange_mean_ms": 49.58866299994406,
+      "exchange_p95_ms": 52.91825500171399,
+      "battery_temperature_c": 38.7,
+      "thermal_status": 1
+    },
+    {
+      "frames": 59000,
+      "elapsed_seconds": 2930.2339999999967,
+      "exchange_mean_ms": 49.59764729990275,
+      "exchange_p95_ms": 52.61969999119174,
+      "battery_temperature_c": 39,
+      "thermal_status": 1
+    },
+    {
+      "frames": 60000,
+      "elapsed_seconds": 2979.9530000000086,
+      "exchange_mean_ms": 49.61554410037934,
+      "exchange_p95_ms": 52.74426998657873,
+      "battery_temperature_c": 39,
+      "thermal_status": 1
+    },
+    {
+      "frames": 61000,
+      "elapsed_seconds": 3029.9219999999914,
+      "exchange_mean_ms": 49.86834770056885,
+      "exchange_p95_ms": 53.06385000440059,
+      "battery_temperature_c": 39,
+      "thermal_status": 1
+    },
+    {
+      "frames": 62000,
+      "elapsed_seconds": 3079.5620000000054,
+      "exchange_mean_ms": 49.55490359972464,
+      "exchange_p95_ms": 53.146814987121616,
+      "battery_temperature_c": 38.8,
+      "thermal_status": 1
+    },
+    {
+      "frames": 63000,
+      "elapsed_seconds": 3129.2339999999967,
+      "exchange_mean_ms": 49.56101610016776,
+      "exchange_p95_ms": 53.054100000008475,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 64000,
+      "elapsed_seconds": 3178.9370000000054,
+      "exchange_mean_ms": 49.59831649999251,
+      "exchange_p95_ms": 52.90806001139572,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 65000,
+      "elapsed_seconds": 3228.719000000012,
+      "exchange_mean_ms": 49.688875599735184,
+      "exchange_p95_ms": 52.68179999984568,
+      "battery_temperature_c": 38.8,
+      "thermal_status": 1
+    },
+    {
+      "frames": 66000,
+      "elapsed_seconds": 3278.5310000000172,
+      "exchange_mean_ms": 49.70045060059056,
+      "exchange_p95_ms": 52.996175007137936,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 67000,
+      "elapsed_seconds": 3328.1719999999914,
+      "exchange_mean_ms": 49.533233099558856,
+      "exchange_p95_ms": 52.73001001478406,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 68000,
+      "elapsed_seconds": 3378.1089999999967,
+      "exchange_mean_ms": 49.83983799946145,
+      "exchange_p95_ms": 53.194000008807045,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 69000,
+      "elapsed_seconds": 3427.8910000000033,
+      "exchange_mean_ms": 49.66925310026272,
+      "exchange_p95_ms": 53.28888499934692,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 70000,
+      "elapsed_seconds": 3477.719000000012,
+      "exchange_mean_ms": 49.731092800037004,
+      "exchange_p95_ms": 53.3038200228475,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 71000,
+      "elapsed_seconds": 3527.5620000000054,
+      "exchange_mean_ms": 49.734164299763506,
+      "exchange_p95_ms": 53.768175022560165,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 72000,
+      "elapsed_seconds": 3577.3120000000054,
+      "exchange_mean_ms": 49.655603900086135,
+      "exchange_p95_ms": 53.534870014118496,
+      "battery_temperature_c": 39,
+      "thermal_status": 1
+    },
+    {
+      "frames": 73000,
+      "elapsed_seconds": 3627.0780000000086,
+      "exchange_mean_ms": 49.668823200598126,
+      "exchange_p95_ms": 52.896984983817674,
+      "battery_temperature_c": 39,
+      "thermal_status": 1
+    },
+    {
+      "frames": 74000,
+      "elapsed_seconds": 3676.7339999999967,
+      "exchange_mean_ms": 49.556942999741295,
+      "exchange_p95_ms": 52.940334983577486,
+      "battery_temperature_c": 39,
+      "thermal_status": 1
+    },
+    {
+      "frames": 75000,
+      "elapsed_seconds": 3726.8120000000054,
+      "exchange_mean_ms": 49.97427289991174,
+      "exchange_p95_ms": 53.44846501102438,
+      "battery_temperature_c": 39,
+      "thermal_status": 1
+    },
+    {
+      "frames": 76000,
+      "elapsed_seconds": 3776.5310000000172,
+      "exchange_mean_ms": 49.629025400354294,
+      "exchange_p95_ms": 52.75676502205897,
+      "battery_temperature_c": 39,
+      "thermal_status": 1
+    },
+    {
+      "frames": 77000,
+      "elapsed_seconds": 3826.5,
+      "exchange_mean_ms": 49.86977039912017,
+      "exchange_p95_ms": 53.255340007308405,
+      "battery_temperature_c": 39,
+      "thermal_status": 1
+    },
+    {
+      "frames": 78000,
+      "elapsed_seconds": 3876.5620000000054,
+      "exchange_mean_ms": 49.973494799400214,
+      "exchange_p95_ms": 53.28672500763787,
+      "battery_temperature_c": 39,
+      "thermal_status": 1
+    },
+    {
+      "frames": 79000,
+      "elapsed_seconds": 3926.3280000000086,
+      "exchange_mean_ms": 49.66457520026597,
+      "exchange_p95_ms": 53.09351500909543,
+      "battery_temperature_c": 39,
+      "thermal_status": 1
+    },
+    {
+      "frames": 80000,
+      "elapsed_seconds": 3976.344000000012,
+      "exchange_mean_ms": 49.913713199610356,
+      "exchange_p95_ms": 53.22001499880571,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 81000,
+      "elapsed_seconds": 4026.0160000000033,
+      "exchange_mean_ms": 49.57245200066245,
+      "exchange_p95_ms": 52.94300998211838,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 82000,
+      "elapsed_seconds": 4075.875,
+      "exchange_mean_ms": 49.771605200192425,
+      "exchange_p95_ms": 53.137390009942465,
+      "battery_temperature_c": 39.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 83000,
+      "elapsed_seconds": 4125.75,
+      "exchange_mean_ms": 49.76601559945266,
+      "exchange_p95_ms": 52.90882498520659,
+      "battery_temperature_c": 39.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 84000,
+      "elapsed_seconds": 4175.703000000009,
+      "exchange_mean_ms": 49.85579359991243,
+      "exchange_p95_ms": 53.6490499987849,
+      "battery_temperature_c": 39.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 85000,
+      "elapsed_seconds": 4225.656000000017,
+      "exchange_mean_ms": 49.85734470002353,
+      "exchange_p95_ms": 53.17992499913089,
+      "battery_temperature_c": 39.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 86000,
+      "elapsed_seconds": 4275.328000000009,
+      "exchange_mean_ms": 49.5872345995449,
+      "exchange_p95_ms": 52.840349984762724,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 87000,
+      "elapsed_seconds": 4325.266000000003,
+      "exchange_mean_ms": 49.83551709976746,
+      "exchange_p95_ms": 53.419220000796486,
+      "battery_temperature_c": 39.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 88000,
+      "elapsed_seconds": 4375.046999999991,
+      "exchange_mean_ms": 49.6820433998364,
+      "exchange_p95_ms": 52.94764001009753,
+      "battery_temperature_c": 39.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 89000,
+      "elapsed_seconds": 4424.796999999991,
+      "exchange_mean_ms": 49.658364599745255,
+      "exchange_p95_ms": 53.00422498548869,
+      "battery_temperature_c": 39.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 90000,
+      "elapsed_seconds": 4474.641000000003,
+      "exchange_mean_ms": 49.74377500009723,
+      "exchange_p95_ms": 53.45294499275042,
+      "battery_temperature_c": 39.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 91000,
+      "elapsed_seconds": 4524.358999999997,
+      "exchange_mean_ms": 49.61832539952593,
+      "exchange_p95_ms": 53.3502049933304,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 92000,
+      "elapsed_seconds": 4574.125,
+      "exchange_mean_ms": 49.65715859935153,
+      "exchange_p95_ms": 52.87554499664111,
+      "battery_temperature_c": 39.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 93000,
+      "elapsed_seconds": 4623.891000000003,
+      "exchange_mean_ms": 49.66546529982588,
+      "exchange_p95_ms": 52.8633249894483,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 94000,
+      "elapsed_seconds": 4673.656000000017,
+      "exchange_mean_ms": 49.677768600260606,
+      "exchange_p95_ms": 52.82975499576423,
+      "battery_temperature_c": 39.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 95000,
+      "elapsed_seconds": 4723.5,
+      "exchange_mean_ms": 49.741162300197175,
+      "exchange_p95_ms": 53.04761999868788,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 96000,
+      "elapsed_seconds": 4773.125,
+      "exchange_mean_ms": 49.52471190004144,
+      "exchange_p95_ms": 52.66687500552507,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 97000,
+      "elapsed_seconds": 4823.108999999997,
+      "exchange_mean_ms": 49.89243069989607,
+      "exchange_p95_ms": 53.09065001347334,
+      "battery_temperature_c": 39.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 98000,
+      "elapsed_seconds": 4872.75,
+      "exchange_mean_ms": 49.52975669989246,
+      "exchange_p95_ms": 52.65051502065034,
+      "battery_temperature_c": 39.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 99000,
+      "elapsed_seconds": 4922.5,
+      "exchange_mean_ms": 49.6444232998474,
+      "exchange_p95_ms": 52.97352998750284,
+      "battery_temperature_c": 39.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 100000,
+      "elapsed_seconds": 4972.453000000009,
+      "exchange_mean_ms": 49.85507280033198,
+      "exchange_p95_ms": 53.245849993254524,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 101000,
+      "elapsed_seconds": 5022.233999999997,
+      "exchange_mean_ms": 49.68002179998439,
+      "exchange_p95_ms": 52.94519000308355,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 102000,
+      "elapsed_seconds": 5072.156000000017,
+      "exchange_mean_ms": 49.83228670005337,
+      "exchange_p95_ms": 53.35036501492141,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 103000,
+      "elapsed_seconds": 5121.844000000012,
+      "exchange_mean_ms": 49.57483059994411,
+      "exchange_p95_ms": 52.69429500622209,
+      "battery_temperature_c": 39.1,
+      "thermal_status": 1
+    },
+    {
+      "frames": 104000,
+      "elapsed_seconds": 5171.703000000009,
+      "exchange_mean_ms": 49.770989300421206,
+      "exchange_p95_ms": 53.08255999261746,
+      "battery_temperature_c": 39.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 105000,
+      "elapsed_seconds": 5221.5,
+      "exchange_mean_ms": 49.70535390006262,
+      "exchange_p95_ms": 53.23865498648956,
+      "battery_temperature_c": 39.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 106000,
+      "elapsed_seconds": 5271.266000000003,
+      "exchange_mean_ms": 49.66388319974067,
+      "exchange_p95_ms": 52.80485499097267,
+      "battery_temperature_c": 39.4,
+      "thermal_status": 1
+    },
+    {
+      "frames": 107000,
+      "elapsed_seconds": 5320.796999999991,
+      "exchange_mean_ms": 49.433328600862296,
+      "exchange_p95_ms": 52.829895009926986,
+      "battery_temperature_c": 39.2,
+      "thermal_status": 1
+    },
+    {
+      "frames": 108000,
+      "elapsed_seconds": 5370.328000000009,
+      "exchange_mean_ms": 49.439565100270556,
+      "exchange_p95_ms": 52.83940498047741,
+      "battery_temperature_c": 39.2,
+      "thermal_status": 1
+    },
+    {
+      "frames": 109000,
+      "elapsed_seconds": 5420.171999999991,
+      "exchange_mean_ms": 49.74410760041792,
+      "exchange_p95_ms": 52.86255500104744,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 110000,
+      "elapsed_seconds": 5469.875,
+      "exchange_mean_ms": 49.60214370035101,
+      "exchange_p95_ms": 52.970190018822905,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 111000,
+      "elapsed_seconds": 5519.766000000003,
+      "exchange_mean_ms": 49.80206400013412,
+      "exchange_p95_ms": 53.1697350248578,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 112000,
+      "elapsed_seconds": 5569.483999999997,
+      "exchange_mean_ms": 49.6119721000141,
+      "exchange_p95_ms": 53.004845017858315,
+      "battery_temperature_c": 39.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 113000,
+      "elapsed_seconds": 5619.358999999997,
+      "exchange_mean_ms": 49.7938405998575,
+      "exchange_p95_ms": 53.27200000465382,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 114000,
+      "elapsed_seconds": 5669.156000000017,
+      "exchange_mean_ms": 49.70897609993699,
+      "exchange_p95_ms": 52.822759993432555,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 115000,
+      "elapsed_seconds": 5718.766000000003,
+      "exchange_mean_ms": 49.526856299402425,
+      "exchange_p95_ms": 52.634030001354404,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 116000,
+      "elapsed_seconds": 5768.437000000005,
+      "exchange_mean_ms": 49.590184999775374,
+      "exchange_p95_ms": 53.17333999846596,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 117000,
+      "elapsed_seconds": 5818.171999999991,
+      "exchange_mean_ms": 49.64970709977206,
+      "exchange_p95_ms": 53.30473000503844,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 118000,
+      "elapsed_seconds": 5867.921999999991,
+      "exchange_mean_ms": 49.67444929978228,
+      "exchange_p95_ms": 53.132939997885835,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 119000,
+      "elapsed_seconds": 5917.719000000012,
+      "exchange_mean_ms": 49.70825009990949,
+      "exchange_p95_ms": 53.12028500047745,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 120000,
+      "elapsed_seconds": 5967.375,
+      "exchange_mean_ms": 49.573448999464745,
+      "exchange_p95_ms": 53.3163950080052,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 121000,
+      "elapsed_seconds": 6017.046999999991,
+      "exchange_mean_ms": 49.58981820032932,
+      "exchange_p95_ms": 52.699519995076116,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 122000,
+      "elapsed_seconds": 6066.844000000012,
+      "exchange_mean_ms": 49.719546400243416,
+      "exchange_p95_ms": 52.99554000230273,
+      "battery_temperature_c": 39.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 123000,
+      "elapsed_seconds": 6116.516000000003,
+      "exchange_mean_ms": 49.58783049992053,
+      "exchange_p95_ms": 52.85164501692634,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 124000,
+      "elapsed_seconds": 6166.25,
+      "exchange_mean_ms": 49.64578890055418,
+      "exchange_p95_ms": 52.76688500016462,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 125000,
+      "elapsed_seconds": 6215.906000000017,
+      "exchange_mean_ms": 49.572210900339996,
+      "exchange_p95_ms": 52.872469993599225,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 126000,
+      "elapsed_seconds": 6265.483999999997,
+      "exchange_mean_ms": 49.50193360057892,
+      "exchange_p95_ms": 52.8474799983087,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 127000,
+      "elapsed_seconds": 6315.0,
+      "exchange_mean_ms": 49.42896840002504,
+      "exchange_p95_ms": 52.46921498765005,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 128000,
+      "elapsed_seconds": 6364.733999999997,
+      "exchange_mean_ms": 49.64393500011647,
+      "exchange_p95_ms": 52.82676500355592,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 129000,
+      "elapsed_seconds": 6414.469000000012,
+      "exchange_mean_ms": 49.63433569969493,
+      "exchange_p95_ms": 52.899325026373845,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 130000,
+      "elapsed_seconds": 6464.141000000003,
+      "exchange_mean_ms": 49.567095300677465,
+      "exchange_p95_ms": 52.77251001825789,
+      "battery_temperature_c": 39.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 131000,
+      "elapsed_seconds": 6513.844000000012,
+      "exchange_mean_ms": 49.611136900261045,
+      "exchange_p95_ms": 53.03188999387203,
+      "battery_temperature_c": 39.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 132000,
+      "elapsed_seconds": 6563.516000000003,
+      "exchange_mean_ms": 49.562581299687736,
+      "exchange_p95_ms": 52.98569501464954,
+      "battery_temperature_c": 39.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 133000,
+      "elapsed_seconds": 6613.233999999997,
+      "exchange_mean_ms": 49.61344030001783,
+      "exchange_p95_ms": 52.96150498179486,
+      "battery_temperature_c": 39.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 134000,
+      "elapsed_seconds": 6662.828000000009,
+      "exchange_mean_ms": 49.497296400979394,
+      "exchange_p95_ms": 52.941690002626274,
+      "battery_temperature_c": 39.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 135000,
+      "elapsed_seconds": 6712.641000000003,
+      "exchange_mean_ms": 49.70929209946189,
+      "exchange_p95_ms": 53.33342501980951,
+      "battery_temperature_c": 39.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 136000,
+      "elapsed_seconds": 6762.421999999991,
+      "exchange_mean_ms": 49.688448499829974,
+      "exchange_p95_ms": 53.084374993341044,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 137000,
+      "elapsed_seconds": 6812.094000000012,
+      "exchange_mean_ms": 49.57380799969542,
+      "exchange_p95_ms": 52.575534996867646,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 138000,
+      "elapsed_seconds": 6861.937000000005,
+      "exchange_mean_ms": 49.746923000813695,
+      "exchange_p95_ms": 53.25411999510834,
+      "battery_temperature_c": 39.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 139000,
+      "elapsed_seconds": 6911.578000000009,
+      "exchange_mean_ms": 49.54537439934211,
+      "exchange_p95_ms": 53.03865001042141,
+      "battery_temperature_c": 39.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 140000,
+      "elapsed_seconds": 6961.391000000003,
+      "exchange_mean_ms": 49.70651740016183,
+      "exchange_p95_ms": 53.29743500042241,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    },
+    {
+      "frames": 141000,
+      "elapsed_seconds": 7011.062000000005,
+      "exchange_mean_ms": 49.56748090064502,
+      "exchange_p95_ms": 53.18535999103915,
+      "battery_temperature_c": 39.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 142000,
+      "elapsed_seconds": 7060.625,
+      "exchange_mean_ms": 49.470716499665286,
+      "exchange_p95_ms": 52.666105001117096,
+      "battery_temperature_c": 39.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 143000,
+      "elapsed_seconds": 7110.687000000005,
+      "exchange_mean_ms": 49.9641485993634,
+      "exchange_p95_ms": 53.75049997965107,
+      "battery_temperature_c": 39.3,
+      "thermal_status": 1
+    },
+    {
+      "frames": 144000,
+      "elapsed_seconds": 7160.375,
+      "exchange_mean_ms": 49.604256499238545,
+      "exchange_p95_ms": 52.793375006876886,
+      "battery_temperature_c": 39.6,
+      "thermal_status": 1
+    }
+  ]
+}
